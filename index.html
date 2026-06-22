@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Eccles Tailored Interview Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   CONFIG — brand + behavior. Edit here without touching logic.
+   ============================================================ */
+:root{
+  --navy-deep:#0D1525;       /* page background */
+  --navy-panel:#16203A;      /* cards / panels */
+  --navy-panel-2:#1B274474;  /* subtle fills */
+  --line:#26314F;            /* borders */
+  --crimson:#D11A2A;         /* Eccles red — primary accent */
+  --crimson-dim:#9E1622;
+  --gold:#D8A93B;            /* gold — secondary accent / "likely" */
+  --gold-dim:#7A6326;
+  --text:#E9EDF6;            /* primary text */
+  --text-muted:#9AA6BF;      /* secondary text */
+  --text-faint:#6C7794;
+  --good:#3FB36B;            /* solid/great states */
+  --amber:#E0A93B;           /* warnings */
+  --radius:14px;
+  --maxw:980px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--navy-deep);color:var(--text);
+  font-family:"DM Sans",system-ui,sans-serif;line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:28px 20px 80px}
+h1,h2,h3,.display{font-family:"Montserrat",sans-serif;letter-spacing:-.01em}
+a{color:var(--gold)}
+button{font-family:inherit}
+
+/* ---------- masthead ---------- */
+.masthead{display:flex;align-items:flex-start;gap:16px;padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:24px}
+.crest{flex:0 0 auto;width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--crimson),var(--crimson-dim));display:flex;align-items:center;justify-content:center;font-family:"Montserrat";font-weight:800;color:#fff;font-size:20px;box-shadow:0 0 0 1px #ffffff14 inset}
+.masthead h1{font-size:21px;margin:0;font-weight:800}
+.masthead .kicker{color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+.masthead p{margin:4px 0 0;color:var(--text-muted);font-size:13.5px;max-width:62ch}
+
+/* ---------- loader ---------- */
+.loader{background:var(--navy-panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-bottom:26px}
+.loader h2{font-size:15px;margin:0 0 4px}
+.loader .hint{color:var(--text-muted);font-size:13px;margin:0 0 12px}
+textarea#jsonIn{width:100%;min-height:120px;resize:vertical;background:var(--navy-deep);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:12px;font-family:ui-monospace,"SFMono-Regular",Menlo,monospace;font-size:12.5px;line-height:1.5}
+textarea#jsonIn:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.btn{cursor:pointer;border:1px solid var(--line);background:var(--navy-panel-2);color:var(--text);padding:9px 16px;border-radius:9px;font-size:13.5px;font-weight:500;transition:border-color .15s,background .15s}
+.btn:hover{border-color:var(--gold)}
+.btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.btn.primary{background:var(--crimson);border-color:var(--crimson);color:#fff;font-weight:700}
+.btn.primary:hover{background:var(--crimson-dim);border-color:var(--crimson-dim)}
+.btn.ghost{background:transparent}
+.switcher{margin-left:auto;display:flex;align-items:center;gap:8px}
+.switcher label{font-size:12px;color:var(--text-faint)}
+.switcher select{background:var(--navy-deep);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:12.5px;font-family:inherit}
+.btn-mini{cursor:pointer;background:transparent;border:1px solid var(--line);color:var(--text-muted);font-size:11.5px;font-family:inherit;padding:6px 10px;border-radius:8px;transition:.15s}
+.btn-mini:hover{border-color:var(--crimson);color:#ffd9dd}
+.btn-mini.armed{background:var(--crimson);border-color:var(--crimson);color:#fff;font-weight:700}
+.btn-mini:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.reset-q{cursor:pointer;background:transparent;border:none;color:var(--text-faint);font-family:inherit;font-size:11px;text-decoration:underline;padding:0;margin-left:auto}
+.reset-q:hover{color:#f0b69a}
+.reset-q:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:3px}
+.rate-lbl{display:flex;align-items:center;gap:10px}
+
+/* ---------- wizard tabs ---------- */
+.tabs{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:18px;border-bottom:1px solid var(--line);padding-bottom:0}
+.tab{cursor:pointer;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--text-muted);font-family:"Montserrat";font-weight:700;font-size:13px;padding:8px 4px 12px;margin-bottom:-1px}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--gold);border-bottom-color:var(--crimson)}
+.tab-count{font-size:11px;color:var(--text-faint);font-weight:700}
+.tab.active .tab-count{color:var(--gold)}
+
+/* saved jobs list */
+.saved-empty{color:var(--text-muted);font-size:13.5px;padding:16px 0}
+.saved-actions{display:flex;gap:10px;flex-wrap:wrap;margin:4px 0 12px}
+.io-panel{display:none;margin:4px 0 16px;padding:14px;border:1px solid var(--line);border-radius:11px;background:var(--navy-deep)}
+.io-panel .hint{margin-top:0}
+.io-panel textarea{width:100%;min-height:90px;resize:vertical;background:var(--navy-panel);color:var(--text-muted);border:1px solid var(--line);border-radius:9px;padding:10px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;line-height:1.5;margin:8px 0}
+.io-panel textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent}
+.feedback.ok{background:#15321f;border:1px solid #2c6a44;color:#8be3aa}
+.loaded-bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.loaded-tag{font-size:12.5px;font-weight:700;color:#7fe0a6}
+.save-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--navy-panel);border:1px solid var(--line);border-radius:11px;padding:12px 15px;margin-bottom:14px}
+.save-bar.unsaved{border-color:var(--gold-dim)}
+.save-status{font-size:13px;color:var(--text-muted)}
+.save-status.unsaved{color:var(--gold);font-weight:700}
+.save-status.saved{color:#7fe0a6;font-weight:700}
+.save-action{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.save-hint{font-size:11.5px;color:var(--text-faint);max-width:24ch;line-height:1.4}
+.read-guide{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.read-guide p{margin:0 0 8px;font-size:12.5px;color:var(--text-muted);line-height:1.55}
+.read-guide p:last-child{margin-bottom:0}
+.read-guide b{color:var(--text)}
+.save-bar .btn.primary.is-saved{background:transparent;border-color:#2c6a44;color:#7fe0a6;cursor:default}
+.saved-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--navy-deep);border:1px solid var(--line);border-radius:11px;padding:13px 15px;margin-bottom:10px}
+.saved-row .meta{flex:1;min-width:180px}
+.saved-row .name{font-family:"Montserrat";font-weight:700;font-size:14px}
+.saved-row .sub{font-size:12px;color:var(--text-muted);margin-top:2px}
+.saved-row .stat{font-size:11.5px;color:var(--text-faint);font-variant-numeric:tabular-nums}
+.saved-row .sample-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--gold);background:#33290f;border:1px solid var(--gold-dim);border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle}
+.saved-row .actions{display:flex;gap:8px}
+.job-details{border:1px solid var(--line);border-radius:10px;margin-top:16px;padding:0 14px}
+.job-details>summary{cursor:pointer;list-style:none;padding:11px 0;font-family:"Montserrat";font-size:12px;font-weight:700;color:var(--gold)}
+.job-details>summary::-webkit-details-marker{display:none}
+.job-details>summary::before{content:"+";font-weight:800;margin-right:7px}
+.job-details[open]>summary::before{content:"–"}
+.job-details .detail-body{padding:0 0 12px}
+.job-details h4{font-family:"Montserrat";font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);margin:12px 0 3px}
+.job-details p{margin:0;font-size:13px;color:var(--text);white-space:pre-wrap;line-height:1.5}
+.tab:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+
+/* ---------- intake form ---------- */
+.form{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}
+.field{display:flex;flex-direction:column;gap:5px;grid-column:1/-1}
+.field.half{grid-column:auto}
+.field label{font-family:"Montserrat";font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--text-faint)}
+.field .opt{text-transform:none;letter-spacing:0;color:var(--text-faint);font-weight:400;font-family:"DM Sans"}
+.field input,.field textarea{background:var(--navy-deep);color:var(--text);border:1px solid var(--line);border-radius:9px;padding:10px;font-family:inherit;font-size:13.5px}
+.field textarea{min-height:78px;resize:vertical;line-height:1.5}
+.field input:focus,.field textarea:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent}
+.built{display:none;margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+.built.show{display:block}
+.built h3{font-family:"Montserrat";font-size:15px;margin:0 0 4px;color:var(--gold)}
+#promptOut{width:100%;min-height:150px;resize:vertical;background:var(--navy-deep);color:var(--text-muted);border:1px solid var(--gold-dim);border-radius:10px;padding:12px;font-family:ui-monospace,Menlo,monospace;font-size:12px;line-height:1.5;margin-top:4px}
+#promptOut:focus{outline:2px solid var(--gold);outline-offset:1px}
+@media (max-width:560px){.form{grid-template-columns:1fr}.field.half{grid-column:1/-1}}
+
+/* ---------- feedback (errors/warnings) — direction, not mood ---------- */
+.feedback{margin-top:12px;border-radius:10px;padding:12px 14px;font-size:13px;display:none}
+.feedback.show{display:block}
+.feedback.error{background:#3a141a;border:1px solid var(--crimson);color:#ffd9dd}
+.feedback.warn{background:#3a3016;border:1px solid var(--amber);color:#ffe9b8}
+.feedback strong{font-weight:700}
+.feedback ul{margin:6px 0 0;padding-left:18px}
+
+/* ---------- dashboard ---------- */
+.dash{background:var(--navy-panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-bottom:14px;display:none}
+.dash.show{display:block}
+.dash-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.dash-head .job{font-size:18px;font-weight:800;margin:0}
+.dash-head .sub{color:var(--text-muted);font-size:13px;margin:2px 0 0}
+.readiness{text-align:right}
+.readiness .num{font-family:"Montserrat";font-weight:800;font-size:30px;line-height:1}
+.readiness .lbl{color:var(--text-faint);font-size:11px;text-transform:uppercase;letter-spacing:.1em}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:999px;letter-spacing:.03em;border:1px solid transparent}
+.badge.comp-high{background:#15321f;color:#8be3aa;border-color:#2c6a44}
+.badge.comp-medium{background:#33301a;color:#e8cf86;border-color:#6a5e2c}
+.badge.comp-low{background:#3a1f16;color:#f0b69a;border-color:#7a432c}
+.completeness-note{display:none;margin-top:12px;font-size:12.5px;color:#ffe9b8;background:#33290f;border:1px solid var(--gold-dim);border-radius:9px;padding:9px 12px}
+.completeness-note.show{display:block}
+.bars{margin-top:18px;display:grid;gap:10px}
+.bar-row{display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:center}
+.bar-row .name{font-size:13px}
+.bar-row .name small{color:var(--text-faint);font-weight:400}
+.bar-row .pct{font-size:12.5px;color:var(--text-muted);font-variant-numeric:tabular-nums;text-align:right}
+.track{grid-column:1/-1;height:7px;background:var(--navy-deep);border-radius:99px;overflow:hidden}
+.fill{height:100%;width:0;background:linear-gradient(90deg,var(--crimson),var(--gold));border-radius:99px;transition:width .35s ease}
+.dash .selfnote{margin-top:14px;font-size:11.5px;color:var(--text-faint)}
+
+/* ---------- stage groups + cards ---------- */
+.stage{margin-top:26px}
+.stage-label{font-family:"Montserrat";font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 0 10px;display:flex;align-items:center;gap:10px}
+.stage-label::after{content:"";flex:1;height:1px;background:var(--line)}
+.card{background:var(--navy-panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;margin-bottom:12px}
+.card-top{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+.chip{font-size:10.5px;font-weight:700;letter-spacing:.04em;padding:3px 9px;border-radius:999px;text-transform:uppercase}
+.chip.type{background:var(--navy-deep);color:var(--text-muted);border:1px solid var(--line)}
+.chip.likely{background:#33290f;color:var(--gold);border:1px solid var(--gold-dim)}
+.chip.anchored{background:#0f2a1c;color:#7fe0a6;border:1px solid #2c6a44}
+.chip.comp{margin-left:auto;background:transparent;color:var(--text-faint);border:1px solid var(--line);text-transform:none;font-weight:500}
+.q{font-family:"Montserrat";font-weight:700;font-size:16px;margin:0 0 8px;line-height:1.35}
+.why{font-size:13px;color:var(--text-muted);margin:0 0 14px}
+.why b{color:var(--text);font-weight:700}
+
+/* self-rating */
+.rate{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px}
+.rate button{cursor:pointer;border:1px solid var(--line);background:var(--navy-deep);color:var(--text-muted);font-size:12px;font-weight:600;padding:6px 12px;border-radius:8px;transition:.12s}
+.rate button:hover{border-color:var(--gold)}
+.rate button[aria-pressed="true"]{background:var(--crimson);border-color:var(--crimson);color:#fff}
+.rate-lbl{font-size:11px;color:var(--text-faint);margin-bottom:14px}
+
+/* disclosure */
+details{border-top:1px solid var(--line);margin-top:6px}
+details>summary{cursor:pointer;list-style:none;padding:11px 0 4px;font-size:12.5px;font-weight:700;color:var(--gold);display:flex;align-items:center;gap:7px}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"+";font-family:"Montserrat";font-weight:800;color:var(--gold);width:14px;display:inline-block}
+details[open]>summary::before{content:"–"}
+.detail-body{padding:4px 0 12px;font-size:13.5px}
+.detail-body h4{font-family:"Montserrat";font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint);margin:14px 0 5px}
+.detail-body h4:first-child{margin-top:4px}
+.scaffold-tag{font-size:11px;color:var(--text-faint);font-style:italic;margin-bottom:6px}
+.rubric{display:grid;gap:8px;margin-top:4px}
+.rubric div{padding:9px 12px;border-radius:9px;font-size:13px;border-left:3px solid}
+.rubric .great{background:#0f2417;border-color:var(--good)}
+.rubric .solid{background:#1b2440;border-color:var(--gold)}
+.rubric .weak{background:#2a1820;border-color:var(--crimson)}
+.rubric span{font-weight:700;text-transform:uppercase;font-size:10.5px;letter-spacing:.06em;display:block;margin-bottom:2px;opacity:.85}
+.crux{background:var(--navy-deep);border:1px solid var(--gold-dim);border-radius:9px;padding:11px 13px;margin-top:6px;font-size:13.5px}
+.crux b{color:var(--gold)}
+.trap{font-size:13px;color:var(--text-muted);margin-top:8px}
+.trap b{color:#f0b69a}
+
+/* ---------- AI coaching ---------- */
+.score-source{font-size:11px;color:var(--text-faint)}
+.score-source.self{color:var(--text-muted)}
+.score-source.coach{color:var(--gold);font-weight:700}
+details.coach>summary{color:var(--gold)}
+.coach-intro{font-size:12.5px;color:var(--text-muted);margin:4px 0 12px}
+.coach-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.copy-status{font-size:12px}
+.copy-status.ok{color:var(--good)} .copy-status.err{color:#f0b69a}
+.coach-prompt{display:none;width:100%;min-height:120px;margin-top:10px;background:var(--navy-deep);color:var(--text-muted);border:1px solid var(--gold-dim);border-radius:9px;padding:10px;font-family:ui-monospace,Menlo,monospace;font-size:11.5px;line-height:1.5}
+.coach-prompt.show{display:block}
+.coach-paste{width:100%;min-height:84px;resize:vertical;background:var(--navy-deep);color:var(--text);border:1px solid var(--line);border-radius:9px;padding:10px;font-family:ui-monospace,Menlo,monospace;font-size:12px;margin:12px 0 8px}
+.coach-paste:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent}
+.coach-err{display:none;color:#f0b69a;font-size:12px;margin:6px 0}
+.coach-err.show{display:block}
+.coach-notes{display:none;margin-top:12px;background:var(--navy-deep);border-left:3px solid var(--gold);border-radius:9px;padding:11px 13px;font-size:12.5px;white-space:pre-wrap;line-height:1.5;color:var(--text)}
+.coach-notes.show{display:block}
+.coach-notes-h{font-family:"Montserrat";font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
+.answer-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:2px 0 6px}
+.answer-head label{font-family:"Montserrat";font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint)}
+.mic-btn{cursor:pointer;border:1px solid var(--line);background:var(--navy-deep);color:var(--text);font-size:12.5px;font-weight:600;padding:6px 12px;border-radius:99px;display:inline-flex;align-items:center;gap:6px;transition:.15s}
+.mic-btn:hover{border-color:var(--gold)}
+.mic-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.mic-btn.listening{background:var(--crimson);border-color:var(--crimson);color:#fff;animation:micpulse 1.3s ease-in-out infinite}
+.mic-btn.unsupported{opacity:.5;cursor:not-allowed}
+@keyframes micpulse{0%,100%{box-shadow:0 0 0 0 #d11a2a55}50%{box-shadow:0 0 0 6px #d11a2a00}}
+.answer-input{width:100%;min-height:90px;resize:vertical;background:var(--navy-deep);color:var(--text);border:1px solid var(--line);border-radius:9px;padding:10px;font-family:inherit;font-size:13.5px;line-height:1.5}
+.answer-input:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent}
+.mic-status{font-size:11.5px;color:var(--text-faint);margin:6px 0 10px;min-height:14px}
+.mic-status.live{color:var(--gold)}
+.mic-status.err{color:#f0b69a}
+@media (prefers-reduced-motion:reduce){.mic-btn.listening{animation:none}}
+
+footer{margin-top:40px;border-top:1px solid var(--line);padding-top:18px;color:var(--text-faint);font-size:12px;line-height:1.7}
+footer b{color:var(--text-muted)}
+
+@media (max-width:560px){
+  .dash-head{flex-direction:column}
+  .readiness{text-align:left}
+  .chip.comp{margin-left:0;width:100%}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+@media print{
+  body{background:#fff;color:#000}
+  .masthead,.tabs,#step1,#step3,#loadArea,#loadedBar,#saveBar,.pb-toolbar,
+  .badges,.completeness-note,.bars,.selfnote,.read-guide,
+  .rate,.rate-lbl,.reset-q,.answer-head,.answer-input,.mic-status,
+  .coach-tools,.coach-prompt,.coach-paste,.coach-err,.coach-notes,
+  details.coach,.onboard-nudge,.recovery-bar{display:none!important}
+  #step2,.step{display:block!important}
+  .dash{border:none;padding:0;margin-bottom:10px}
+  .dash-head .job{font-size:20px;color:#000}
+  .dash-head .sub,.readiness{color:#000}
+  .readiness .lbl{color:#444}
+  .card{border:1px solid #ccc;break-inside:avoid;background:#fff;margin-bottom:10px}
+  .q,.why,.why b,.detail-body,.detail-body p,.detail-body h4,.crux,.trap{color:#000!important}
+  .crux{background:#f6f1e0;border-color:#caa94d}
+  .rubric .great{background:#eef7f0} .rubric .solid{background:#f3f1e6} .rubric .weak{background:#f7eef0}
+  .job-details{border-color:#ccc}
+  details>summary{display:none}
+  .detail-body{padding-top:0}
+  .chip{border:1px solid #aaa;color:#333}
+}
+
+/* onboarding nudge */
+.onboard-nudge{display:none;align-items:center;gap:12px;flex-wrap:wrap;background:#33290f;border:1px solid var(--gold-dim);border-radius:11px;padding:12px 15px;margin-bottom:16px}
+.onboard-nudge.show{display:flex}
+.onboard-nudge .txt{flex:1;min-width:180px;font-size:13px;color:#ffe9b8}
+.onboard-nudge .txt b{color:var(--gold)}
+.step1-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.step1-head .hint{margin:0;flex:1}
+.step1-head #clearFormBtn{flex:0 0 auto;white-space:nowrap}
+.input-tips{border:1px solid var(--line);border-radius:11px;margin:0 0 18px;padding:0 14px;background:var(--navy-panel)}
+.input-tips>summary{cursor:pointer;list-style:none;padding:12px 0;font-family:"Montserrat";font-size:12.5px;font-weight:700;color:var(--gold)}
+.input-tips>summary::-webkit-details-marker{display:none}
+.input-tips>summary::before{content:"+";font-weight:800;margin-right:7px}
+.input-tips[open]>summary::before{content:"–"}
+.input-tips .detail-body{padding:0 0 12px}
+.input-tips p{margin:0 0 9px;font-size:12.5px;color:var(--text-muted);line-height:1.55}
+.input-tips p b{color:var(--text)}
+.input-tips .tips-note{color:var(--text-faint);font-style:italic;margin-top:2px;margin-bottom:0}
+
+/* recovery bar */
+.recovery-bar{display:none;align-items:center;gap:12px;flex-wrap:wrap;background:var(--navy-panel);border:1px solid var(--gold);border-radius:11px;padding:12px 15px;margin-bottom:16px}
+.recovery-bar.show{display:flex}
+.recovery-bar .txt{flex:1;min-width:180px;font-size:13px;color:var(--text)}
+.recovery-bar .txt b{color:var(--gold)}
+
+/* masthead walkthrough button */
+.tour-btn{flex:0 0 auto;align-self:center}
+
+/* readiness trend sparkline */
+.trend{margin-top:16px}
+.trend-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:6px}
+.trend-head .lbl{font-family:"Montserrat";font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
+.trend-head .delta{font-size:12px;font-weight:700}
+.trend-head .delta.up{color:var(--good)} .trend-head .delta.down{color:#f0b69a} .trend-head .delta.flat{color:var(--text-faint)}
+.trend svg{display:block;width:100%;height:54px}
+
+/* walkthrough overlay */
+.tour-overlay{display:none;position:fixed;inset:0;z-index:50;background:rgba(8,12,22,.78);align-items:center;justify-content:center;padding:20px}
+.tour-overlay.show{display:flex}
+.tour-card{background:var(--navy-panel);border:1px solid var(--line);border-radius:16px;max-width:440px;width:100%;padding:24px;box-shadow:0 20px 60px #0008}
+.tour-step{font-family:"Montserrat";font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.tour-card h3{font-family:"Montserrat";font-size:19px;margin:0 0 8px}
+.tour-card p{margin:0;color:var(--text-muted);font-size:14px;line-height:1.6;min-height:84px}
+.tour-dots{display:flex;gap:7px;margin:18px 0}
+.tour-dots span{width:8px;height:8px;border-radius:99px;background:var(--line)}
+.tour-dots span.on{background:var(--crimson)}
+.tour-actions{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tour-nav{display:flex;gap:8px}
+
+/* playbook toolbar */
+.pb-toolbar{display:none;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.pb-toolbar.show{display:flex}
+
+/* saved search */
+.saved-search{width:100%;background:var(--navy-deep);color:var(--text);border:1px solid var(--line);border-radius:9px;padding:9px 12px;font-family:inherit;font-size:13px;margin-bottom:12px}
+.saved-search:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent}
+.saved-row .stat .readypct{color:var(--gold);font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="crest">E</div>
+    <div>
+      <div class="kicker">Eccles · David Eccles School of Business</div>
+      <h1>Tailored Interview Playbook</h1>
+      <p>Describe a role you're interviewing for, get a ready-made prompt for any AI, then practice against likely questions with model scaffolds, rubrics, and AI coaching. No coding.</p>
+    </div>
+    <button class="btn-mini tour-btn" id="tourBtn">Walkthrough</button>
+  </header>
+
+  <div class="recovery-bar" id="recoveryBar">
+    <div class="txt">You have unsaved work on <b id="recoveryLabel">a job</b>. Resume where you left off?</div>
+    <button class="btn primary" id="recoveryResumeBtn">Resume</button>
+    <button class="btn-mini" id="recoveryDiscardBtn">Discard</button>
+  </div>
+
+  <!-- LOADER / WIZARD -->
+  <section class="loader" id="loader">
+    <div class="tabs" role="tablist">
+      <button class="tab active" id="tab1" role="tab" aria-selected="true">1 · Describe the job</button>
+      <button class="tab" id="tab2" role="tab" aria-selected="false">2 · Rehearse &amp; Refine</button>
+      <button class="tab" id="tab3" role="tab" aria-selected="false">3 · Saved jobs <span class="tab-count" id="savedCount"></span></button>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="step" id="step1">
+      <div class="onboard-nudge" id="onboardNudge">
+        <div class="txt"><b>New here?</b> Load a sample playbook to see how practice, rubrics, and AI coaching work before you build your own.</div>
+        <button class="btn primary" id="nudgeSampleBtn">Try the sample</button>
+        <button class="btn-mini" id="nudgeDismissBtn">Dismiss</button>
+      </div>
+      <div class="step1-head">
+        <p class="hint">Fill in what you know — the more specific your detail, the sharper and more realistic your questions. We'll turn it into a ready-to-run prompt (no coding); copy it into any AI, then bring the result to step 2.</p>
+        <button class="btn-mini" id="clearFormBtn">Clear form</button>
+      </div>
+      <details class="input-tips" id="inputTips">
+        <summary>What makes a strong input?</summary>
+        <div class="detail-body">
+          <p><b>Paste real text from the posting</b>, not a paraphrase — exact responsibilities and requirements produce the most realistic questions.</p>
+          <p><b>Be concrete.</b> Name the tools, methods, scope, and team size. "Leads Agile delivery using Jira and Power BI" earns far better questions than "manages projects."</p>
+          <p><b>Add company context.</b> Mission, values, and recent news (last 6–12 months) are what turn generic questions into tailored "why us / why now" ones.</p>
+          <p><b>Include your background and any real questions you've found.</b> Real questions get marked <span style="color:#7fe0a6">Anchored</span> and sharpen the whole set.</p>
+          <p class="tips-note">Thin input still works — it just leans on fundamentals. Rich, specific input is what earns company- and role-specific questions.</p>
+        </div>
+      </details>
+      <div class="form">
+        <div class="field half"><label>Company</label><input id="f_company" type="text" placeholder="e.g., Northwind Robotics" /></div>
+        <div class="field half"><label>Role title</label><input id="f_role" type="text" placeholder="e.g., Senior Product Marketing Manager" /></div>
+        <div class="field half"><label>Level</label><input id="f_level" type="text" placeholder="e.g., Senior / Manager / Associate" /></div>
+        <div class="field half"><label>Interview round <span class="opt">(optional)</span></label><input id="f_stage" type="text" placeholder="e.g., Hiring manager, panel, final" /></div>
+        <div class="field"><label>Job summary</label><textarea id="f_summary" placeholder="The overview / 'about the role' paragraph from the posting."></textarea></div>
+        <div class="field"><label>Role responsibilities</label><textarea id="f_resp" placeholder="What you'd actually do — paste the responsibilities / 'what you'll do' bullets."></textarea></div>
+        <div class="field"><label>Skills / requirements</label><textarea id="f_skills" placeholder="Must-haves, nice-to-haves, qualifications."></textarea></div>
+        <div class="field"><label>Other context <span class="opt">(optional, but sharpens tailoring)</span></label><textarea id="f_other" placeholder="Company mission &amp; values, recent news (last 6–12 months), your background, and any REAL interview questions you found for this or a similar role."></textarea></div>
+        <div class="field"><label>Or paste the whole job posting <span class="opt">(optional — use instead of the boxes above)</span></label><textarea id="f_full" placeholder="Paste the entire posting here and we'll use it directly."></textarea></div>
+      </div>
+      <div class="btnrow">
+        <button class="btn primary" id="buildBtn">Build my prompt</button>
+        <button class="btn ghost" id="sampleBtn">Skip — try a sample playbook</button>
+      </div>
+      <div class="feedback warn" id="formErr"></div>
+
+      <div class="built" id="builtWrap">
+        <h3>Your prompt is ready</h3>
+        <p class="hint"><b>Three steps:</b> (1) Copy the prompt below. (2) Paste it into any AI and let it reply with a block of JSON. (3) Copy <b>the AI's reply</b> and paste <b>that</b> into step 2 — not this prompt.</p>
+        <textarea id="promptOut" readonly spellcheck="false"></textarea>
+        <div class="btnrow">
+          <button class="btn primary" id="copyPromptBtn">Copy prompt</button>
+          <span class="copy-status" id="copyPromptStatus"></span>
+          <button class="btn ghost" id="toStep2Btn">Next: paste your playbook →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" id="step2" style="display:none">
+      <div id="loadArea">
+        <p class="hint">Paste <b>the AI's reply</b> here — the block of JSON it gave you, not the prompt you sent it. The shell checks it before rendering and tells you in plain language what to fix if something's off.</p>
+        <details class="input-tips" id="playbookTips">
+          <summary>How to get the best playbook from your AI</summary>
+          <div class="detail-body">
+            <p><b>Ask for JSON only.</b> If your AI replies with prose or explanation instead of a block of JSON, paste back: "Output the JSON only — no commentary." Code fences or a stray sentence are fine — the loader strips them.</p>
+            <p><b>If it gets cut off,</b> the loader will tell you. Reply "continue" to your AI and paste the full result, or ask it to regenerate a little shorter.</p>
+            <p><b>Use a capable model.</b> Stronger models write sharper questions and cleaner JSON — coaching quality follows the model you choose.</p>
+            <p><b>Not happy with it?</b> Ask the AI to revise before re-pasting — e.g., "make the model answers more specific to the company" — then load the new version.</p>
+            <p class="tips-note">Every paste is checked before it loads, so you'll get a plain-language note if anything needs fixing.</p>
+          </div>
+        </details>
+        <textarea id="jsonIn" placeholder="Paste the AI's playbook output here…" spellcheck="false"></textarea>
+        <div class="btnrow">
+          <button class="btn primary" id="loadBtn">Load playbook</button>
+          <button class="btn ghost" id="clearBtn">Clear</button>
+          <button class="btn ghost" id="backTo1Btn">← Back to step 1</button>
+        </div>
+        <div class="feedback error" id="errBox"></div>
+        <div class="feedback warn" id="warnBox"></div>
+      </div>
+
+      <div class="loaded-bar" id="loadedBar" style="display:none">
+        <span class="loaded-tag">✓ Playbook loaded</span>
+        <button class="btn-mini" id="reopenLoadBtn">Load a different playbook</button>
+      </div>
+
+      <div class="save-bar" id="saveBar" style="display:none">
+        <div class="save-status" id="saveStatus"></div>
+        <div class="save-action">
+          <span class="save-hint">Click Save job to keep this job in this browser.</span>
+          <button class="btn primary" id="saveJobBtn">Save job</button>
+        </div>
+      </div>
+
+      <div class="pb-toolbar" id="pbToolbar">
+        <button class="btn-mini" id="printBtn">Print / save as PDF</button>
+        <button class="btn-mini" id="duplicateBtn">Duplicate for another company</button>
+        <button class="btn-mini" id="shareBtn">Share with advisor</button>
+      </div>
+      <div class="io-panel" id="sharePanel">
+        <p class="hint"><b>Hand this job to an advisor.</b> Download starts automatically; if it doesn't, copy the text below and save it as a <b>.json</b> file. Then send it to your advisor and tell them: open this tool → <b>Saved jobs</b> → <b>Import backup</b> → choose the file. They'll see your questions, answers, self-ratings, and coaching.</p>
+        <textarea id="shareText" readonly spellcheck="false"></textarea>
+        <div class="btnrow"><button class="btn-mini" id="copyShareBtn">Copy share text</button><span class="copy-status" id="shareCopyStatus"></span></div>
+      </div>
+
+      <!-- DASHBOARD -->
+      <section class="dash" id="dash">
+        <div class="dash-head">
+          <div>
+            <p class="job" id="dJob">—</p>
+            <p class="sub" id="dSub">—</p>
+          </div>
+          <div class="readiness">
+            <div class="num" id="dScore">—</div>
+            <div class="lbl">Readiness Tracking</div>
+          </div>
+        </div>
+        <div class="badges" id="dBadges"></div>
+        <div class="completeness-note" id="dComplete"></div>
+        <div class="bars" id="dBars"></div>
+        <div class="trend" id="trend"></div>
+        <p class="selfnote">Readiness is your own rating against each rubric — it reflects preparation, not an external evaluation.</p>
+        <div class="read-guide">
+          <p><b>How to read this.</b> Questions marked <span style="color:var(--gold)">Likely</span> are inferred from the role and level, not confirmed for this company — prepare for them, don't expect them verbatim. <span style="color:#7fe0a6">Anchored</span> questions came from a real example you supplied or the job posting itself.</p>
+          <p><b>Model answers are scaffolds, not scripts.</b> Each shows a structure and an illustrative example — adapt it in your own words. Memorizing it will read as memorized.</p>
+        </div>
+        <details class="job-details" id="jobDetails" style="display:none">
+          <summary>Job details</summary>
+          <div class="detail-body" id="jobDetailsBody"></div>
+        </details>
+      </section>
+
+      <!-- QUESTIONS -->
+      <main id="questions"></main>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" id="step3" style="display:none">
+      <p class="hint">Every job you load is saved here in this browser. Open one to pick up where you left off — the job description loads back in too. Use the buttons below to back up your work or move it to another device. Saved work lives on this device only until you do.</p>
+      <div class="saved-actions">
+        <button class="btn ghost" id="exportBtn">Download backup</button>
+        <button class="btn ghost" id="importBtn">Import backup</button>
+        <input type="file" id="importFile" accept="application/json,.json" hidden />
+      </div>
+      <div class="feedback" id="ioMsg"></div>
+
+      <div class="io-panel" id="exportPanel">
+        <p class="hint">If the download didn't start (some preview windows block it), copy this and save it as a <b>.json</b> file:</p>
+        <textarea id="exportText" readonly spellcheck="false"></textarea>
+        <div class="btnrow"><button class="btn-mini" id="copyExportBtn">Copy backup text</button><span class="copy-status" id="exportCopyStatus"></span></div>
+      </div>
+
+      <div class="io-panel" id="importPanel">
+        <p class="hint">Choose a backup file, or paste its contents below. Jobs you don't have are added; if a job already exists, the newer version wins.</p>
+        <button class="btn-mini" id="chooseFileBtn">Choose backup file</button>
+        <textarea id="importText" placeholder="…or paste backup JSON here" spellcheck="false"></textarea>
+        <button class="btn-mini" id="importTextBtn">Import pasted text</button>
+      </div>
+
+      <input type="text" class="saved-search" id="savedSearch" placeholder="Search saved jobs by company or role…" />
+      <div id="savedList"></div>
+    </div>
+  </section>
+
+</div>
+
+<div class="tour-overlay" id="tourOverlay">
+  <div class="tour-card">
+    <div class="tour-step" id="tourStepLabel">Step 1 of 4</div>
+    <h3 id="tourTitle">Welcome</h3>
+    <p id="tourBody">…</p>
+    <div class="tour-dots" id="tourDots"></div>
+    <div class="tour-actions">
+      <button class="btn-mini" id="tourSkip">Skip</button>
+      <div class="tour-nav">
+        <button class="btn-mini" id="tourBack">Back</button>
+        <button class="btn primary" id="tourNext">Next</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   CONFIG
+   ============================================================ */
+const CONFIG = {
+  storagePrefix: "eccles_playbook_v1::",
+  ratingScale: [
+    {label:"Not yet", value:0},
+    {label:"Weak",    value:1},
+    {label:"Fair",    value:2},
+    {label:"Solid",   value:3},
+    {label:"Strong",  value:4}
+  ],
+  speechLang: "en-US",
+  stageOrder: ["recruiter_screen","hiring_manager","panel","final"],
+  stageNames: {
+    recruiter_screen:"Recruiter screen",
+    hiring_manager:"Hiring manager",
+    panel:"Panel",
+    final:"Final / executive",
+    other:"Additional questions"
+  }
+};
+const RATING_MAX = Math.max(...CONFIG.ratingScale.map(r=>r.value));
+
+/* ============================================================
+   DEFENSIVE PARSE — handle the real ways LLM JSON arrives broken
+   ============================================================ */
+function defensiveParse(raw){
+  if(!raw || !raw.trim()) return {ok:false, error:"The box is empty. Paste your generator's JSON output, then load."};
+  let s = raw.trim();
+  // 0) catch the most common slip: the generator PROMPT pasted instead of the AI's reply
+  if(/OUTPUT SCHEMA/i.test(s) && /(GENERATION LOGIC|expert interview coach|Output the JSON)/i.test(s)){
+    return {ok:false, error:"That's the prompt itself, not the playbook. Copy it into an AI (Claude, ChatGPT, your school's tool), let it reply, then paste the AI's reply here — not the prompt."};
+  }
+  // 1) strip code fences
+  s = s.replace(/^```(?:json)?/i,"").replace(/```$/,"").trim();
+  // 2) drop any preamble/postamble by slicing first { to last }
+  const first = s.indexOf("{"), last = s.lastIndexOf("}");
+  if(first === -1 || last === -1 || last < first){
+    return {ok:false, error:"That doesn't look like JSON. Copy the whole object the generator produced — it should start with { and end with }."};
+  }
+  let core = s.slice(first, last+1);
+  // 3) detect truncation by brace/bracket balance
+  const balance = (str,open,close)=>{let d=0,inStr=false,esc=false;for(const c of str){if(esc){esc=false;continue}if(c==='\\'){esc=true;continue}if(c==='"')inStr=!inStr;if(inStr)continue;if(c===open)d++;else if(c===close)d--}return d};
+  if(balance(core,"{","}") !== 0 || balance(core,"[","]") !== 0){
+    return {ok:false, error:"The JSON looks cut off partway through — your model likely hit a length limit. Re-run the generator (ask it to continue if needed) and paste the complete output."};
+  }
+  // 4) try clean, then progressively repair
+  const attempts = [
+    core,
+    core.replace(/[\u201C\u201D]/g,'"').replace(/[\u2018\u2019]/g,"'"), // smart quotes
+    core.replace(/[\u201C\u201D]/g,'"').replace(/[\u2018\u2019]/g,"'").replace(/,(\s*[}\]])/g,"$1") // trailing commas
+  ];
+  for(const a of attempts){
+    try{ return {ok:true, data:JSON.parse(a)}; }catch(e){ /* try next */ }
+  }
+  return {ok:false, error:"The JSON is malformed and couldn't be auto-repaired. Common culprits: a trailing comma, a missing quote, or smart quotes. Re-run the generator for a clean copy, or paste it into a JSON validator to find the spot."};
+}
+
+/* ============================================================
+   VALIDATE — render even when imperfect; report what's thin
+   ============================================================ */
+function validate(d){
+  const warnings = [];
+  if(typeof d !== "object" || d === null) return {fatal:"The top level isn't an object.", warnings};
+  if(!Array.isArray(d.questions) || d.questions.length === 0)
+    return {fatal:"No questions found. The playbook needs a non-empty \"questions\" array.", warnings};
+  if(!Array.isArray(d.competencies) || d.competencies.length === 0)
+    warnings.push("No competencies provided — the readiness breakdown will be limited.");
+  const missingFields = new Set();
+  d.questions.forEach((q,i)=>{
+    if(!q.question) missingFields.add("question text");
+    if(!q.modelAnswer) missingFields.add("model answer");
+    if(!q.rubric || (!q.rubric.great && !q.rubric.solid && !q.rubric.weak)) missingFields.add("rubric");
+    if(!q.cruxLine) missingFields.add("crux line");
+  });
+  if(missingFields.size) warnings.push("Some questions are missing: "+[...missingFields].join(", ")+". They'll still show, with those parts left blank.");
+  if(!d.meta) warnings.push("No \"meta\" block — company/role header will read as Untitled.");
+  return {fatal:null, warnings};
+}
+
+/* ============================================================
+   STATE + PERSISTENCE (keyed per job; degrades silently)
+   ============================================================ */
+let STATE = { data:null, key:null, ratings:{}, sources:{}, coachNotes:{}, answers:{}, inputs:null, history:[], saved:false, dirty:false };
+let pendingInputs = null; // captured from the intake form at build time
+
+function slug(s){return (s||"").toString().toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"").slice(0,40)}
+function keyFor(d){const m=d.meta||{};return CONFIG.storagePrefix+(slug(m.company)||"co")+"__"+(slug(m.role)||"role")+"__"+(slug(m.level)||"lvl")}
+function storageAvailable(){try{const k="__t";localStorage.setItem(k,"1");localStorage.removeItem(k);return true}catch(e){return false}}
+const CAN_STORE = storageAvailable();
+function isInIndex(key){ return !!savedIndex()[key]; }
+
+// Write the current job to storage. Only called for jobs the user has chosen to save.
+function persist(){
+  if(!CAN_STORE || !STATE.key) return;
+  try{
+    recordReadinessPoint();
+    localStorage.setItem(STATE.key, JSON.stringify({data:STATE.data, ratings:STATE.ratings, sources:STATE.sources, coachNotes:STATE.coachNotes, answers:STATE.answers, inputs:STATE.inputs, history:STATE.history, savedAt:Date.now()}));
+    const idxKey = CONFIG.storagePrefix+"__index";
+    const idx = JSON.parse(localStorage.getItem(idxKey)||"{}");
+    const m = STATE.data.meta||{};
+    idx[STATE.key] = (m.company||"Company")+" — "+(m.role||"Role")+(m.level?" ("+m.level+")":"");
+    localStorage.setItem(idxKey, JSON.stringify(idx));
+    localStorage.setItem(CONFIG.storagePrefix+"__last", STATE.key);
+    renderSavedList();
+    if(document.getElementById("trend")) renderTrend();
+  }catch(e){}
+}
+// Append today's readiness to history (one point per calendar day; today's latest value wins).
+function recordReadinessPoint(){
+  const r = composite();
+  if(r == null) return;
+  const today = new Date().toISOString().slice(0,10);
+  let h = Array.isArray(STATE.history) ? STATE.history.slice() : [];
+  const last = h[h.length-1];
+  if(last && last.d === today){ last.r = r; }
+  else { h.push({d: today, r: r}); }
+  if(h.length > 60) h = h.slice(-60);
+  STATE.history = h;
+}
+// Called whenever the user changes a rating/answer/coaching note.
+// If the job is already saved, keep it current; otherwise just flag it unsaved.
+/* ---------- recovery draft (safety net for unsaved work) ---------- */
+function draftKey(){ return CONFIG.storagePrefix+"__draft"; }
+function writeDraft(){
+  if(!CAN_STORE || !STATE.key || !STATE.data) return;
+  try{ localStorage.setItem(draftKey(), JSON.stringify({key:STATE.key, data:STATE.data, ratings:STATE.ratings, sources:STATE.sources, coachNotes:STATE.coachNotes, answers:STATE.answers, inputs:STATE.inputs, savedAt:Date.now()})); }catch(e){}
+}
+function getDraft(){ if(!CAN_STORE) return null; try{ const v=localStorage.getItem(draftKey()); return v?JSON.parse(v):null; }catch(e){ return null; } }
+function clearDraft(){ if(!CAN_STORE) return; try{ localStorage.removeItem(draftKey()); }catch(e){} }
+
+function markDirty(){
+  if(STATE.saved){ persist(); }
+  else { STATE.dirty = true; writeDraft(); updateSaveBar(); }
+}
+function saveJob(){
+  if(!STATE.data) return;
+  STATE.saved = true; STATE.dirty = false;
+  persist();
+  clearDraft();          // it's a real saved job now — no draft needed
+  updateSaveBar();
+}
+function updateSaveBar(){
+  const bar=document.getElementById("saveBar");
+  const status=document.getElementById("saveStatus");
+  const btn=document.getElementById("saveJobBtn");
+  const hint=document.querySelector(".save-hint");
+  if(!STATE.data){ bar.style.display="none"; return; }
+  bar.style.display="flex";
+  if(!CAN_STORE){
+    bar.classList.remove("unsaved");
+    status.textContent="This browser blocks local storage, so this job can't be saved here.";
+    status.className="save-status"; btn.style.display="none"; if(hint) hint.style.display="none"; return;
+  }
+  btn.style.display="";
+  if(STATE.saved){
+    bar.classList.remove("unsaved");
+    status.textContent="Saved in this browser. Your changes update automatically.";
+    status.className="save-status saved";
+    btn.textContent="Saved ✓"; btn.classList.add("is-saved"); btn.disabled=true;
+    if(hint) hint.style.display="none";
+  } else {
+    bar.classList.add("unsaved");
+    status.textContent="Not saved yet — your ratings and answers won't persist until you save.";
+    status.className="save-status unsaved";
+    btn.textContent="Save job"; btn.classList.remove("is-saved"); btn.disabled=false;
+    if(hint) hint.style.display="";
+  }
+}
+function setLoadAreaCollapsed(collapsed){
+  document.getElementById("loadArea").style.display = collapsed ? "none" : "block";
+  document.getElementById("loadedBar").style.display = collapsed ? "flex" : "none";
+}
+function loadSaved(key){
+  if(!CAN_STORE) return null;
+  try{ const v = localStorage.getItem(key); return v?JSON.parse(v):null; }catch(e){ return null; }
+}
+function savedIndex(){
+  let idx={};
+  try{ idx = JSON.parse(localStorage.getItem(CONFIG.storagePrefix+"__index")||"{}"); }catch(e){}
+  return idx;
+}
+function isSampleKey(key){ return key === keyFor(SAMPLE); }
+
+function readinessFor(rec){
+  if(!rec || !rec.data) return null;
+  const comps={}; (rec.data.competencies||[]).forEach(c=>{ comps[c.id]={weight:Number(c.weight)||0, sum:0, count:0}; });
+  (rec.data.questions||[]).forEach(q=>{
+    const r=rec.ratings?rec.ratings[q.id]:undefined;
+    if(r==null) return;
+    if(comps[q.competencyId]){ comps[q.competencyId].sum+=r; comps[q.competencyId].count++; }
+  });
+  let wSum=0, wScore=0, any=false;
+  Object.values(comps).forEach(c=>{ if(c.count>0){ any=true; const pct=(c.sum/(c.count*RATING_MAX))*100; const w=c.weight||1; wSum+=w; wScore+=pct*w; } });
+  if(!any) return null;
+  return wSum>0 ? Math.round(wScore/wSum) : null;
+}
+
+function renderSavedList(){
+  const el = document.getElementById("savedList");
+  const countEl = document.getElementById("savedCount");
+  if(!CAN_STORE){ if(el) el.innerHTML='<p class="saved-empty">This browser is blocking local storage, so saved jobs aren\'t available here.</p>'; return; }
+  const idx = savedIndex();
+  const keys = Object.keys(idx);
+  if(countEl) countEl.textContent = keys.length ? "("+keys.length+")" : "";
+  if(!el) return;
+  if(keys.length===0){ el.innerHTML='<p class="saved-empty">No saved jobs yet. Build one in step 1, or try the sample.</p>'; return; }
+  const filterEl = document.getElementById("savedSearch");
+  const q = (filterEl && filterEl.value || "").trim().toLowerCase();
+  let rows = keys.map(k=>({k, rec:loadSaved(k)})).sort((a,b)=>((b.rec&&b.rec.savedAt)||0)-((a.rec&&a.rec.savedAt)||0));
+  if(q) rows = rows.filter(({k})=>(idx[k]||"").toLowerCase().includes(q));
+  if(rows.length===0){ el.innerHTML='<p class="saved-empty">No saved jobs match "'+esc(q)+'".</p>'; return; }
+  el.innerHTML = rows.map(({k,rec})=>{
+    const m = (rec&&rec.data&&rec.data.meta)||{};
+    const total = (rec&&rec.data&&rec.data.questions)?rec.data.questions.length:0;
+    const rated = (rec&&rec.ratings)?Object.keys(rec.ratings).length:0;
+    const when = (rec&&rec.savedAt)?new Date(rec.savedAt).toLocaleDateString():"";
+    const ready = readinessFor(rec);
+    const readyStr = ready==null ? "" : `<span class="readypct">${ready}% ready</span> · `;
+    const sample = isSampleKey(k)?'<span class="sample-tag">sample</span>':"";
+    return `<div class="saved-row">
+      <div class="meta">
+        <div class="name">${esc(m.company||"Company")}${sample}</div>
+        <div class="sub">${esc([m.role,m.level].filter(Boolean).join(" · ")||"—")}</div>
+        <div class="stat">${readyStr}${rated}/${total} rated${when?" · last practiced "+esc(when):""}</div>
+      </div>
+      <div class="actions">
+        <button class="btn-mini open-saved" data-key="${esc(k)}">Open</button>
+        <button class="btn-mini del-saved" data-key="${esc(k)}">Delete</button>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+/* ============================================================
+   SCORING — self-assessment rolled to weighted composite
+   ============================================================ */
+function competencyScores(){
+  const d = STATE.data, out = {};
+  (d.competencies||[]).forEach(c=>{ out[c.id] = {name:c.name||c.id, weight:Number(c.weight)||0, sum:0, count:0}; });
+  (d.questions||[]).forEach(q=>{
+    const r = STATE.ratings[q.id];
+    if(r==null) return;
+    const cid = q.competencyId;
+    if(out[cid]){ out[cid].sum += r; out[cid].count++; }
+  });
+  return out;
+}
+function composite(){
+  const cs = competencyScores();
+  let wSum=0, wScore=0, anyRated=false;
+  Object.values(cs).forEach(c=>{
+    if(c.count>0){ anyRated=true; const pct=(c.sum/(c.count*RATING_MAX))*100; const w=c.weight||1; wSum+=w; wScore+=pct*w; }
+  });
+  if(!anyRated) return null;
+  return wSum>0 ? Math.round(wScore/wSum) : null;
+}
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+function esc(s){return (s==null?"":String(s)).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]))}
+
+function renderDashboard(){
+  const d=STATE.data, m=d.meta||{};
+  document.getElementById("dJob").textContent = (m.company||"Untitled company");
+  document.getElementById("dSub").textContent = [m.role,m.level].filter(Boolean).join(" · ") || "Role not specified";
+
+  // completeness badge + note
+  const badges = document.getElementById("dBadges");
+  const ic = (m.inputCompleteness||"").toLowerCase();
+  badges.innerHTML = "";
+  if(["high","medium","low"].includes(ic)){
+    badges.innerHTML += `<span class="badge comp-${ic}">Inputs: ${ic}</span>`;
+  }
+  const qCount = (d.questions||[]).length;
+  badges.innerHTML += `<span class="badge comp-medium">${qCount} question${qCount===1?"":"s"}</span>`;
+  const inferred = (d.questions||[]).filter(q=>(q.confidence||"inferred")==="inferred").length;
+  if(inferred) badges.innerHTML += `<span class="badge comp-low">${inferred} likely</span>`;
+  const coached = Object.values(STATE.sources||{}).filter(s=>s==="coach").length;
+  if(coached) badges.innerHTML += `<span class="badge comp-high">${coached} coach-assessed</span>`;
+
+  const note = document.getElementById("dComplete");
+  if(ic==="low"){ note.textContent="These inputs were thin, so this playbook leans on fundamentals over company specifics. Add mission/values and recent news to the generator for sharper tailoring."; note.classList.add("show"); }
+  else note.classList.remove("show");
+
+  drawBars();
+  renderTrend();
+  renderJobDetails();
+  document.getElementById("dash").classList.add("show");
+}
+
+function renderTrend(){
+  const el=document.getElementById("trend");
+  const h = (STATE.history||[]).filter(p=>p && typeof p.r==="number");
+  if(h.length < 2){ el.innerHTML=""; return; }
+  const W=600, H=54, pad=4;
+  const xs=(i)=> pad + i*( (W-2*pad) / (h.length-1) );
+  const ys=(r)=> H-pad - (r/100)*(H-2*pad);
+  const pts=h.map((p,i)=>`${xs(i).toFixed(1)},${ys(p.r).toFixed(1)}`).join(" ");
+  const first=h[0].r, last=h[h.length-1].r, diff=last-first;
+  const cls = diff>0?"up":diff<0?"down":"flat";
+  const sign = diff>0?"+":"";
+  const dot = `<circle cx="${xs(h.length-1).toFixed(1)}" cy="${ys(last).toFixed(1)}" r="3.5" fill="var(--gold)"/>`;
+  el.innerHTML =
+    `<div class="trend-head"><span class="lbl">Readiness over time</span>`+
+    `<span class="delta ${cls}">${sign}${diff} pts since ${esc(h[0].d)}</span></div>`+
+    `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Readiness trend">`+
+    `<polyline points="${pts}" fill="none" stroke="var(--crimson)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>`+
+    dot+`</svg>`;
+}
+
+function renderJobDetails(){
+  const det = document.getElementById("jobDetails");
+  const body = document.getElementById("jobDetailsBody");
+  const f = STATE.inputs;
+  if(!f || !Object.values(f).some(v=>v && String(v).trim())){ det.style.display="none"; return; }
+  const block = (label,val)=> (val && String(val).trim()) ? `<h4>${label}</h4><p>${esc(val)}</p>` : "";
+  body.innerHTML =
+    block("Interview round", f.stage) +
+    block("Job summary", f.summary) +
+    block("Responsibilities", f.resp) +
+    block("Skills / requirements", f.skills) +
+    block("Other context", f.other) +
+    block("Full posting", f.full);
+  det.style.display = body.innerHTML.trim() ? "block" : "none";
+}
+
+function drawBars(){
+  const cs = competencyScores();
+  const comp = composite();
+  document.getElementById("dScore").textContent = comp==null ? "—" : comp+"%";
+  const bars = document.getElementById("dBars");
+  const rows = Object.values(cs);
+  if(rows.length===0){ bars.innerHTML=""; return; }
+  bars.innerHTML = rows.map(c=>{
+    const pct = c.count>0 ? Math.round((c.sum/(c.count*RATING_MAX))*100) : 0;
+    const status = c.count>0 ? pct+"%" : "not started";
+    return `<div class="bar-row">
+      <div class="name">${esc(c.name)} ${c.weight?`<small>· weight ${c.weight}</small>`:""}</div>
+      <div class="pct">${status}</div>
+      <div class="track"><div class="fill" style="width:${pct}%"></div></div>
+    </div>`;
+  }).join("");
+}
+
+function renderQuestions(){
+  const d=STATE.data;
+  const byStage = {};
+  (d.questions||[]).forEach(q=>{
+    const st = CONFIG.stageOrder.includes(q.stage)?q.stage:"other";
+    (byStage[st]=byStage[st]||[]).push(q);
+  });
+  const order = [...CONFIG.stageOrder,"other"].filter(s=>byStage[s]);
+  const compName = {};
+  (d.competencies||[]).forEach(c=>compName[c.id]=c.name);
+
+  let html="";
+  order.forEach(st=>{
+    html += `<section class="stage"><p class="stage-label">${esc(CONFIG.stageNames[st]||st)}</p>`;
+    byStage[st].forEach(q=>{ html += questionCard(q, compName); });
+    html += `</section>`;
+  });
+  document.getElementById("questions").innerHTML = html;
+  wireRatings();
+  wireCoaching();
+  wireAnswers();
+  wireMic();
+  wireResets();
+}
+
+function questionCard(q, compName){
+  const conf = (q.confidence||"inferred")==="anchored"
+    ? `<span class="chip anchored">Anchored</span>`
+    : `<span class="chip likely">Likely</span>`;
+  const type = q.type ? `<span class="chip type">${esc(q.type.replace(/_/g," "))}</span>` : "";
+  const cName = compName[q.competencyId];
+  const comp = cName ? `<span class="chip comp">${esc(cName)}</span>` : "";
+
+  const rateBtns = CONFIG.ratingScale.map(r=>{
+    const pressed = STATE.ratings[q.id]===r.value ? 'aria-pressed="true"' : 'aria-pressed="false"';
+    return `<button data-q="${esc(q.id)}" data-v="${r.value}" ${pressed}>${r.label}</button>`;
+  }).join("");
+
+  const rb = q.rubric||{};
+  const rubricHtml = (rb.great||rb.solid||rb.weak) ? `
+    <h4>What good looks like</h4>
+    <div class="rubric">
+      ${rb.great?`<div class="great"><span>Great</span>${esc(rb.great)}</div>`:""}
+      ${rb.solid?`<div class="solid"><span>Solid</span>${esc(rb.solid)}</div>`:""}
+      ${rb.weak?`<div class="weak"><span>Weak</span>${esc(rb.weak)}</div>`:""}
+    </div>` : "";
+
+  const src = STATE.sources[q.id];
+  const srcText = src==="coach" ? "★ Coach-assessed"
+    : src==="self" ? "Self-rated"
+    : "Rate yourself against the rubric, or get AI coaching below.";
+  const srcClass = src==="coach" ? "coach" : src==="self" ? "self" : "";
+  const savedNotes = STATE.coachNotes[q.id];
+  const savedAnswer = STATE.answers[q.id] || "";
+
+  return `<article class="card">
+    <div class="card-top">${type}${conf}${comp}</div>
+    <p class="q">${esc(q.question)||"<em>Question text missing</em>"}</p>
+    ${q.whyHere?`<p class="why"><b>Why this is likely here:</b> ${esc(q.whyHere)}</p>`:""}
+    <div class="rate" role="group" aria-label="Rate your readiness">${rateBtns}</div>
+    <p class="rate-lbl"><span class="score-source ${srcClass}" data-q="${esc(q.id)}">${srcText}</span><button class="reset-q" data-q="${esc(q.id)}" type="button" title="Clear your answer, rating, and coaching for this question">Reset question</button></p>
+    <details>
+      <summary>Model scaffold, rubric &amp; crux</summary>
+      <div class="detail-body">
+        ${q.modelAnswer?`<h4>Model scaffold</h4><p class="scaffold-tag">A structure to adapt — not a script.</p><p>${esc(q.modelAnswer)}</p>`:""}
+        ${rubricHtml}
+        ${q.cruxLine?`<div class="crux"><b>The crux:</b> ${esc(q.cruxLine)}</div>`:""}
+        ${q.trap?`<p class="trap"><b>Common trap:</b> ${esc(q.trap)}</p>`:""}
+      </div>
+    </details>
+    <details class="coach"${savedNotes?" open":""}>
+      <summary>Practice &amp; Coaching &rarr;</summary>
+      <div class="detail-body">
+        <p class="coach-intro">Speak or type your answer below, then copy the prompt — your answer is baked in. Run it in any AI and paste the reply back; the score updates automatically.</p>
+        <div class="answer-head">
+          <label data-q="${esc(q.id)}">Your practice answer</label>
+          <button class="mic-btn" data-q="${esc(q.id)}" type="button" aria-pressed="false" title="Dictate your answer">🎤 <span class="mic-label">Dictate</span></button>
+        </div>
+        <textarea class="answer-input" data-q="${esc(q.id)}" placeholder="Speak with the mic, or type your answer here…" spellcheck="false">${esc(savedAnswer)}</textarea>
+        <p class="mic-status" data-q="${esc(q.id)}"></p>
+        <div class="coach-tools">
+          <button class="btn ghost copy-coach" data-q="${esc(q.id)}">Copy coaching prompt</button>
+          <span class="copy-status" data-q="${esc(q.id)}"></span>
+        </div>
+        <textarea class="coach-prompt" data-q="${esc(q.id)}" readonly aria-label="Coaching prompt to copy"></textarea>
+        <textarea class="coach-paste" data-q="${esc(q.id)}" placeholder="Paste the AI's assessment here, then Apply…" spellcheck="false"></textarea>
+        <p class="coach-err" data-q="${esc(q.id)}"></p>
+        <button class="btn primary apply-coach" data-q="${esc(q.id)}">Apply assessment</button>
+        <div class="coach-notes ${savedNotes?"show":""}" data-q="${esc(q.id)}">${savedNotes?`<p class="coach-notes-h">Coach feedback</p>${esc(savedNotes)}`:""}</div>
+      </div>
+    </details>
+  </article>`;
+}
+
+function wireRatings(){
+  document.querySelectorAll(".rate button").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const qid=btn.dataset.q, v=Number(btn.dataset.v);
+      const toggleOff = STATE.ratings[qid]===v;
+      STATE.ratings[qid] = toggleOff ? undefined : v;
+      if(STATE.ratings[qid]===undefined){ delete STATE.ratings[qid]; delete STATE.sources[qid]; }
+      else { STATE.sources[qid]="self"; }
+      btn.parentElement.querySelectorAll("button").forEach(b=>{
+        b.setAttribute("aria-pressed", (Number(b.dataset.v)===STATE.ratings[qid])?"true":"false");
+      });
+      updateSourceLabel(qid);
+      drawBars();
+      markDirty();
+    });
+  });
+}
+
+/* ============================================================
+   AI COACHING — build prompt, copy, parse the reply, apply score
+   ============================================================ */
+function buildCoachingPrompt(q, answer){
+  const rb=q.rubric||{};
+  const options = CONFIG.ratingScale.map(r=>r.label).join(" | ");
+  const ans = (answer && answer.trim()) ? answer.trim() : "[ Replace this line with your practice answer ]";
+  return `You are an expert interview coach assessing a practice answer. Be specific and honest — do not inflate.
+
+QUESTION: ${q.question||"—"}
+GREAT looks like: ${rb.great||"—"}
+SOLID looks like: ${rb.solid||"—"}
+WEAK looks like: ${rb.weak||"—"}
+THE CRUX (must land): ${q.cruxLine||"—"}
+COMMON TRAP: ${q.trap||"—"}
+
+MY ANSWER:
+"""
+${ans}
+"""
+
+Assess my answer against the rubric above. Reply in EXACTLY this format and nothing else:
+SCORE: <${options}>
+WHY: <one sentence tying the score to the rubric>
+STRENGTH: <the single strongest thing I did>
+FIX: <the one highest-leverage improvement>
+CRUX: <Hit | Missed> - <one line>`;
+}
+
+function parseAssessment(text){
+  if(!text || !text.trim()) return {ok:false, error:"Paste the AI's reply first."};
+  const line = (text.match(/SCORE\s*[:\-]\s*([^\n\r]+)/i)||[])[1];
+  if(!line) return {ok:false, error:"Couldn't find a SCORE line. Use the copied prompt — the reply should start with 'SCORE: …'. You can still rate it yourself with the buttons above."};
+  const norm = s => s.toLowerCase().replace(/[^a-z]/g,"");
+  const target = norm(line);
+  // longest label first so "not yet" wins over a stray substring
+  const byLen = [...CONFIG.ratingScale].sort((a,b)=>norm(b.label).length-norm(a.label).length);
+  let found = byLen.find(r => target.startsWith(norm(r.label))) || byLen.find(r => target.includes(norm(r.label)));
+  if(!found) return {ok:false, error:"Found a SCORE line but couldn't match it to the scale ("+CONFIG.ratingScale.map(r=>r.label).join(", ")+"). Rate it yourself with the buttons above."};
+  return {ok:true, value:found.value, notes:text.trim()};
+}
+
+async function copyText(t){
+  try{ await navigator.clipboard.writeText(t); return true; }
+  catch(e){
+    try{
+      const ta=document.createElement("textarea");
+      ta.value=t; ta.style.position="fixed"; ta.style.opacity="0";
+      document.body.appendChild(ta); ta.select();
+      const ok=document.execCommand("copy"); document.body.removeChild(ta); return ok;
+    }catch(e2){ return false; }
+  }
+}
+
+function updateSourceLabel(qid){
+  const el=document.querySelector(`.score-source[data-q="${qid}"]`);
+  if(!el) return;
+  const src=STATE.sources[qid];
+  if(src==="coach"){ el.textContent="★ Coach-assessed"; el.className="score-source coach"; }
+  else if(src==="self"){ el.textContent="Self-rated"; el.className="score-source self"; }
+  else { el.textContent="Rate yourself against the rubric, or get AI coaching below."; el.className="score-source"; }
+}
+
+function applyCoach(qid, value, notes){
+  STATE.ratings[qid]=value;
+  STATE.sources[qid]="coach";
+  STATE.coachNotes[qid]=notes;
+  document.querySelectorAll(`.rate button[data-q="${qid}"]`).forEach(b=>{
+    b.setAttribute("aria-pressed", Number(b.dataset.v)===value ? "true":"false");
+  });
+  updateSourceLabel(qid);
+  const nb=document.querySelector(`.coach-notes[data-q="${qid}"]`);
+  if(nb){ nb.innerHTML=`<p class="coach-notes-h">Coach feedback</p>${esc(notes)}`; nb.classList.add("show"); }
+  drawBars();
+  markDirty();
+}
+
+function wireCoaching(){
+  document.querySelectorAll(".copy-coach").forEach(btn=>{
+    btn.addEventListener("click", async ()=>{
+      const qid=btn.dataset.q;
+      const q=(STATE.data.questions||[]).find(x=>x.id===qid);
+      if(!q) return;
+      const answerEl=document.querySelector(`.answer-input[data-q="${qid}"]`);
+      const prompt=buildCoachingPrompt(q, answerEl?answerEl.value:"");
+      const ok=await copyText(prompt);
+      const st=document.querySelector(`.copy-status[data-q="${qid}"]`);
+      if(ok){ st.textContent="Copied — paste it into your AI."; st.className="copy-status ok"; }
+      else{
+        st.textContent="Couldn't copy automatically — select the prompt below and copy it.";
+        st.className="copy-status err";
+        const pt=document.querySelector(`.coach-prompt[data-q="${qid}"]`);
+        pt.value=prompt; pt.classList.add("show"); pt.focus(); pt.select();
+      }
+    });
+  });
+  document.querySelectorAll(".apply-coach").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const qid=btn.dataset.q;
+      const ta=document.querySelector(`.coach-paste[data-q="${qid}"]`);
+      const err=document.querySelector(`.coach-err[data-q="${qid}"]`);
+      const res=parseAssessment(ta.value);
+      if(!res.ok){ err.textContent=res.error; err.classList.add("show"); return; }
+      err.classList.remove("show");
+      applyCoach(qid, res.value, res.notes);
+    });
+  });
+}
+
+/* ============================================================
+   PRACTICE ANSWER + MICROPHONE DICTATION
+   ============================================================ */
+const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+const SPEECH_OK = !!SpeechRec;
+let activeRec = null;        // only one mic session at a time
+let activeMicQid = null;
+
+function wireAnswers(){
+  document.querySelectorAll(".answer-input").forEach(ta=>{
+    ta.addEventListener("input",()=>{
+      const qid=ta.dataset.q;
+      if(ta.value.trim()) STATE.answers[qid]=ta.value;
+      else delete STATE.answers[qid];
+      markDirty();
+    });
+  });
+}
+
+function setMicState(qid, listening){
+  const btn=document.querySelector(`.mic-btn[data-q="${qid}"]`);
+  const lbl=btn?btn.querySelector(".mic-label"):null;
+  if(!btn) return;
+  btn.setAttribute("aria-pressed", listening?"true":"false");
+  btn.classList.toggle("listening", listening);
+  if(lbl) lbl.textContent = listening ? "Stop" : "Dictate";
+}
+function micStatus(qid, msg, cls){
+  const el=document.querySelector(`.mic-status[data-q="${qid}"]`);
+  if(el){ el.textContent=msg||""; el.className="mic-status"+(cls?" "+cls:""); }
+}
+
+function stopMic(){
+  if(activeRec){ try{ activeRec.stop(); }catch(e){} }
+}
+
+function startMic(qid){
+  const ta=document.querySelector(`.answer-input[data-q="${qid}"]`);
+  if(!ta) return;
+  const rec=new SpeechRec();
+  rec.lang=CONFIG.speechLang;
+  rec.continuous=true;
+  rec.interimResults=true;
+  let base = ta.value ? ta.value.replace(/\s*$/,"")+" " : "";
+  rec.onstart=()=>{ activeRec=rec; activeMicQid=qid; setMicState(qid,true); micStatus(qid,"Listening… speak clearly. Tap Stop when done.","live"); };
+  rec.onerror=(e)=>{
+    const msg = e.error==="not-allowed" || e.error==="service-not-allowed"
+      ? "Microphone permission was blocked. Allow mic access in your browser, then try again."
+      : e.error==="no-speech" ? "Didn't catch anything — try again and speak a little louder."
+      : "Dictation error ("+e.error+"). You can type your answer instead.";
+    micStatus(qid,msg,"err");
+  };
+  rec.onend=()=>{ setMicState(qid,false); if(activeMicQid===qid) micStatus(qid,"","" ); activeRec=null; activeMicQid=null; };
+  rec.onresult=(ev)=>{
+    let finalText="", interim="";
+    for(let i=ev.resultIndex;i<ev.results.length;i++){
+      const r=ev.results[i];
+      if(r.isFinal) finalText += r[0].transcript;
+      else interim += r[0].transcript;
+    }
+    if(finalText){ base = (base+finalText).replace(/\s+/g," ")+" "; }
+    ta.value = (base+interim).trim();
+    const qidNow=qid;
+    if(ta.value.trim()) STATE.answers[qidNow]=ta.value; else delete STATE.answers[qidNow];
+    if(interim) micStatus(qid,"… "+interim,"live");
+  };
+  try{ rec.start(); }
+  catch(e){ micStatus(qid,"Couldn't start dictation. Type your answer instead.","err"); }
+}
+
+function resetQuestion(qid){
+  delete STATE.ratings[qid];
+  delete STATE.sources[qid];
+  delete STATE.coachNotes[qid];
+  delete STATE.answers[qid];
+  document.querySelectorAll(`.rate button[data-q="${qid}"]`).forEach(b=>b.setAttribute("aria-pressed","false"));
+  const ans=document.querySelector(`.answer-input[data-q="${qid}"]`); if(ans) ans.value="";
+  const paste=document.querySelector(`.coach-paste[data-q="${qid}"]`); if(paste) paste.value="";
+  const notes=document.querySelector(`.coach-notes[data-q="${qid}"]`); if(notes){ notes.innerHTML=""; notes.classList.remove("show"); }
+  const cerr=document.querySelector(`.coach-err[data-q="${qid}"]`); if(cerr) cerr.classList.remove("show");
+  const cstat=document.querySelector(`.copy-status[data-q="${qid}"]`); if(cstat){ cstat.textContent=""; cstat.className="copy-status"; }
+  micStatus(qid,"","");
+  updateSourceLabel(qid);
+  drawBars();
+  markDirty();
+}
+function wireResets(){
+  document.querySelectorAll(".reset-q").forEach(btn=>{
+    btn.addEventListener("click",()=>resetQuestion(btn.dataset.q));
+  });
+}
+
+function wireMic(){
+  document.querySelectorAll(".mic-btn").forEach(btn=>{
+    const qid=btn.dataset.q;
+    if(!SPEECH_OK){
+      btn.title="Dictation isn't available in this browser";
+      btn.classList.add("unsupported");
+      const lbl=btn.querySelector(".mic-label"); if(lbl) lbl.textContent="No mic";
+      btn.addEventListener("click",()=>micStatus(qid,"Dictation isn't supported in this browser. Chrome, Edge or Safari support it — or just type your answer.","err"));
+      return;
+    }
+    btn.addEventListener("click",()=>{
+      if(activeMicQid===qid){ stopMic(); return; }
+      if(activeRec){ stopMic(); }       // stop a mic running on another question
+      startMic(qid);
+      // save once dictation produces text
+      const ta=document.querySelector(`.answer-input[data-q="${qid}"]`);
+      if(ta){ ta.addEventListener("blur",markDirty,{once:true}); }
+    });
+  });
+}
+
+/* ============================================================
+   ORCHESTRATION
+   ============================================================ */
+function activate(data, restore, inputsOverride){
+  restore = restore || {};
+  STATE.data = data;
+  STATE.key = keyFor(data);
+  STATE.ratings = restore.ratings || {};
+  STATE.sources = restore.sources || {};
+  STATE.coachNotes = restore.coachNotes || {};
+  STATE.answers = restore.answers || {};
+  STATE.inputs = (inputsOverride != null) ? inputsOverride : (restore.inputs || null);
+  STATE.history = Array.isArray(restore.history) ? restore.history : [];
+  STATE.saved = isInIndex(STATE.key);   // already in the Saved list?
+  STATE.dirty = false;
+  if(STATE.inputs) populateForm(STATE.inputs);
+  renderDashboard();
+  renderQuestions();
+  if(STATE.saved){ persist(); clearDraft(); }   // saved job: refresh last-opened, no stray draft
+  setLoadAreaCollapsed(true);
+  document.getElementById("pbToolbar").classList.add("show");
+  updateSaveBar();
+  showStep(2);                          // the playbook lives under Tab 2
+  document.getElementById("dash").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function populateForm(f){
+  const map={f_company:f.company,f_role:f.role,f_level:f.level,f_stage:f.stage,f_summary:f.summary,f_resp:f.resp,f_skills:f.skills,f_other:f.other,f_full:f.full};
+  Object.entries(map).forEach(([id,v])=>{ const el=document.getElementById(id); if(el) el.value=v||""; });
+}
+
+function showError(msg){const b=document.getElementById("errBox");b.innerHTML="<strong>Couldn't load that.</strong> "+esc(msg);b.classList.add("show");}
+function showWarnings(list){const b=document.getElementById("warnBox");if(!list.length){b.classList.remove("show");return;}b.innerHTML="<strong>Loaded with notes:</strong><ul>"+list.map(w=>"<li>"+esc(w)+"</li>").join("")+"</ul>";b.classList.add("show");}
+function clearFeedback(){["errBox","warnBox"].forEach(id=>document.getElementById(id).classList.remove("show"));}
+
+/* ============================================================
+   STEP 1 — assemble the generator prompt from the intake form
+   ============================================================ */
+function buildGeneratorPrompt(f){
+  const has = v => v && v.trim();
+  const jobPosting = has(f.full)
+    ? f.full.trim()
+    : [
+        has(f.summary)?("SUMMARY:\n"+f.summary.trim()):"",
+        has(f.resp)?("RESPONSIBILITIES:\n"+f.resp.trim()):"",
+        has(f.skills)?("SKILLS / REQUIREMENTS:\n"+f.skills.trim()):""
+      ].filter(Boolean).join("\n\n");
+
+  const line = (label,val)=> has(val) ? `- ${label}: ${val.trim()}` : `- ${label}: (not provided)`;
+
+  return `You are an expert interview coach and former hiring manager. Generate a tailored, role-specific interview playbook for the candidate below, and return it as a SINGLE strict JSON object matching the OUTPUT SCHEMA. Output the JSON only — no prose, no markdown fences.
+
+## INPUTS
+${line("COMPANY", f.company)}
+${line("ROLE TITLE", f.role)}
+${line("TARGET LEVEL", f.level)}
+${line("INTERVIEW STAGE", f.stage)}
+
+JOB POSTING:
+${jobPosting || "(not provided — lean on core fundamentals for the role and level)"}
+
+OTHER CONTEXT (mission/values, recent news, candidate background, and any REAL questions found):
+${has(f.other)?f.other.trim():"(not provided)"}
+
+## GENERATION LOGIC
+1. Parse the inputs into 6–9 weighted competencies (integer weights summing to ~100). Tag each source as "job_posting", "values", or "core_floor".
+2. Reserve a core floor: at least 8 questions covering universal fundamentals for this function and level (tell me about yourself, motivation, a signature accomplishment, a failure/conflict, why this company/role). Tailoring must never crowd out fundamentals.
+3. Derive the likely interview archetype: probable loop stages and a question-type mix for this function and level. This is reconstruction from general patterns, not claimed knowledge of this company's actual process.
+4. Generate UP TO 50 questions total (fewer is fine — favor impact over volume), allocated across competencies in rough proportion to weight, plus the core floor. Order by stage, then competency.
+5. For each question include: a tailoring rationale, a framework-based model answer (a scaffold to adapt, NOT a script; shape it to the candidate's background if provided), a three-tier rubric, one crux line, and one common trap.
+6. Confidence: mark a question "anchored" ONLY if it comes from a real question in OTHER CONTEXT or is directly stated in the posting; otherwise "inferred". Frame everything as LIKELY, never guaranteed.
+7. Self-audit before emitting: do NOT assert any company-specific fact (news, metric, exec name, process) that was not in the inputs. Set meta.inputCompleteness to "high", "medium", or "low" based on how much optional context was supplied; when "low", lean on fundamentals and keep tailoring general.
+
+## CONSISTENCY
+- 6–9 competencies; weights sum 95–105. Total questions ≤ 50; core floor ≥ 8.
+- IDs: competencies comp_01, comp_02, …; questions q_01, q_02, … in final order.
+- stage ∈ {recruiter_screen, hiring_manager, panel, final}. type ∈ {behavioral, technical, case, values, role_specific, situational}. confidence ∈ {anchored, inferred}.
+
+## OUTPUT SCHEMA (emit exactly this shape, JSON only)
+{
+  "meta": {
+    "company": "", "role": "", "level": "", "generatedDate": "",
+    "inputCompleteness": "high | medium | low",
+    "archetype": { "stages": ["recruiter_screen","hiring_manager","panel","final"],
+      "typeMix": { "behavioral": 0, "technical": 0, "case": 0, "values": 0, "role_specific": 0, "situational": 0 } }
+  },
+  "competencies": [ { "id": "comp_01", "name": "", "weight": 0, "source": "job_posting | values | core_floor" } ],
+  "questions": [ {
+    "id": "q_01", "competencyId": "comp_01",
+    "stage": "recruiter_screen | hiring_manager | panel | final",
+    "type": "behavioral | technical | case | values | role_specific | situational",
+    "confidence": "anchored | inferred",
+    "question": "", "whyHere": "", "modelAnswer": "",
+    "rubric": { "great": "", "solid": "", "weak": "" },
+    "cruxLine": "", "trap": ""
+  } ]
+}
+
+Now generate the playbook for the INPUTS above. Output the JSON object only.`;
+}
+
+/* ---------- wizard navigation ---------- */
+function showStep(n){
+  document.getElementById("step1").style.display = n===1?"block":"none";
+  document.getElementById("step2").style.display = n===2?"block":"none";
+  document.getElementById("step3").style.display = n===3?"block":"none";
+  [1,2,3].forEach(i=>{
+    const t=document.getElementById("tab"+i);
+    t.classList.toggle("active",i===n); t.setAttribute("aria-selected",i===n);
+  });
+  if(n===3) renderSavedList();
+}
+document.getElementById("tab1").addEventListener("click",()=>showStep(1));
+document.getElementById("tab2").addEventListener("click",()=>showStep(2));
+document.getElementById("tab3").addEventListener("click",()=>showStep(3));
+document.getElementById("toStep2Btn").addEventListener("click",()=>showStep(2));
+document.getElementById("backTo1Btn").addEventListener("click",()=>showStep(1));
+
+function readForm(){
+  return {
+    company:val("f_company"), role:val("f_role"), level:val("f_level"), stage:val("f_stage"),
+    summary:val("f_summary"), resp:val("f_resp"), skills:val("f_skills"), other:val("f_other"), full:val("f_full")
+  };
+}
+document.getElementById("buildBtn").addEventListener("click",()=>{
+  const f = readForm();
+  const err=document.getElementById("formErr");
+  const enough = (f.role && (f.full || f.summary || f.resp || f.skills));
+  if(!enough){
+    err.innerHTML="<strong>Add a little more.</strong> A role title plus either the job summary, responsibilities, skills, or the full posting is the minimum for a useful playbook.";
+    err.classList.add("show"); return;
+  }
+  err.classList.remove("show");
+  pendingInputs = f; // remember the description so it can be saved with the playbook
+  document.getElementById("promptOut").value = buildGeneratorPrompt(f);
+  document.getElementById("builtWrap").classList.add("show");
+  document.getElementById("builtWrap").scrollIntoView({behavior:"smooth",block:"nearest"});
+});
+function val(id){return document.getElementById(id).value;}
+
+document.getElementById("copyPromptBtn").addEventListener("click", async ()=>{
+  const ok = await copyText(document.getElementById("promptOut").value);
+  const st = document.getElementById("copyPromptStatus");
+  st.textContent = ok ? "Copied — paste it into your AI." : "Select the text above and copy it manually.";
+  st.className = "copy-status "+(ok?"ok":"err");
+});
+
+document.getElementById("loadBtn").addEventListener("click",()=>{
+  clearFeedback();
+  const parsed = defensiveParse(document.getElementById("jsonIn").value);
+  if(!parsed.ok){ showError(parsed.error); return; }
+  const v = validate(parsed.data);
+  if(v.fatal){ showError(v.fatal); return; }
+  showWarnings(v.warnings);
+  const prior = loadSaved(keyFor(parsed.data));
+  activate(parsed.data, prior || {}, pendingInputs);
+});
+
+document.getElementById("clearBtn").addEventListener("click",()=>{document.getElementById("jsonIn").value="";clearFeedback();});
+document.getElementById("saveJobBtn").addEventListener("click",saveJob);
+document.getElementById("reopenLoadBtn").addEventListener("click",()=>{ setLoadAreaCollapsed(false); document.getElementById("loadArea").scrollIntoView({behavior:"smooth",block:"nearest"}); });
+
+let _clearArmed=false, _clearTimer=null;
+function disarmClear(){
+  _clearArmed=false; clearTimeout(_clearTimer);
+  const b=document.getElementById("clearFormBtn");
+  if(b){ b.textContent="Clear form"; b.classList.remove("armed"); }
+}
+function doClearForm(){
+  ["f_company","f_role","f_level","f_stage","f_summary","f_resp","f_skills","f_other","f_full","promptOut"].forEach(id=>{document.getElementById(id).value="";});
+  pendingInputs = null;
+  document.getElementById("builtWrap").classList.remove("show");
+  document.getElementById("formErr").classList.remove("show");
+  const st=document.getElementById("copyPromptStatus"); st.textContent=""; st.className="copy-status";
+  document.getElementById("f_company").focus();
+}
+document.getElementById("clearFormBtn").addEventListener("click",()=>{
+  const b=document.getElementById("clearFormBtn");
+  if(!_clearArmed){
+    _clearArmed=true; b.textContent="Confirm clear"; b.classList.add("armed");
+    clearTimeout(_clearTimer); _clearTimer=setTimeout(disarmClear,4000);
+    return;
+  }
+  disarmClear();
+  doClearForm();
+});
+
+/* ---------- Tab 3: open / delete saved jobs ---------- */
+function openSavedJob(key){
+  const rec = loadSaved(key);
+  if(!rec || !rec.data) return;
+  clearFeedback();
+  activate(rec.data, rec);           // restores inputs + lands on Tab 2 with the playbook
+}
+let _armedDelKey=null, _delTimer=null;
+function disarmRowDelete(){
+  _armedDelKey=null; clearTimeout(_delTimer);
+  document.querySelectorAll(".del-saved.armed").forEach(b=>{ b.textContent="Delete"; b.classList.remove("armed"); });
+}
+document.getElementById("savedList").addEventListener("click",(e)=>{
+  const open = e.target.closest(".open-saved");
+  const del = e.target.closest(".del-saved");
+  if(open){ disarmRowDelete(); openSavedJob(open.dataset.key); return; }
+  if(del){
+    const key = del.dataset.key;
+    if(_armedDelKey!==key){
+      disarmRowDelete();
+      _armedDelKey=key; del.textContent="Confirm"; del.classList.add("armed");
+      _delTimer=setTimeout(disarmRowDelete,4000);
+      return;
+    }
+    disarmRowDelete();
+    deleteSavedKey(key);
+  }
+});
+
+function deleteSavedKey(key){
+  if(!CAN_STORE) return;
+  try{
+    localStorage.removeItem(key);
+    const idxKey=CONFIG.storagePrefix+"__index";
+    const idx=JSON.parse(localStorage.getItem(idxKey)||"{}");
+    delete idx[key];
+    localStorage.setItem(idxKey, JSON.stringify(idx));
+    if(localStorage.getItem(CONFIG.storagePrefix+"__last")===key) localStorage.removeItem(CONFIG.storagePrefix+"__last");
+  }catch(e){}
+  if(STATE.key===key){
+    STATE={ data:null, key:null, ratings:{}, sources:{}, coachNotes:{}, answers:{}, inputs:null, saved:false, dirty:false };
+    document.getElementById("dash").classList.remove("show");
+    document.getElementById("questions").innerHTML="";
+    document.getElementById("pbToolbar").classList.remove("show");
+    setLoadAreaCollapsed(false);
+    updateSaveBar();
+  }
+  renderSavedList();
+}
+
+document.getElementById("sampleBtn").addEventListener("click",()=>{
+  clearFeedback();
+  document.getElementById("jsonIn").value = JSON.stringify(SAMPLE,null,2);
+  activate(SAMPLE, {}, SAMPLE_INPUTS);
+});
+
+/* ---------- print / save as PDF ---------- */
+function printPlaybook(){
+  if(!STATE.data) return;
+  const dets=[...document.querySelectorAll("#questions details, #jobDetails")];
+  const prev=dets.map(d=>d.open);
+  dets.forEach(d=>{ d.open=true; });
+  let done=false;
+  const cleanup=()=>{ if(done) return; done=true; dets.forEach((d,i)=>{ d.open=prev[i]; }); window.removeEventListener("afterprint",cleanup); };
+  window.addEventListener("afterprint",cleanup);
+  setTimeout(()=>{ window.print(); setTimeout(cleanup,1500); }, 60);
+}
+document.getElementById("printBtn").addEventListener("click",printPlaybook);
+
+/* ---------- duplicate for another company ---------- */
+function duplicateCurrentJob(){
+  const src = STATE.inputs ? Object.assign({}, STATE.inputs) : readForm();
+  if(!src.role && !src.summary && !src.resp && !src.skills && !src.full){
+    showStep(1);
+    document.getElementById("formErr").innerHTML="<strong>Nothing to duplicate.</strong> This job has no saved description to reuse.";
+    document.getElementById("formErr").classList.add("show");
+    return;
+  }
+  src.company=""; // new company — keep the role-generic details
+  populateForm(src);
+  pendingInputs=null;
+  document.getElementById("builtWrap").classList.remove("show");
+  document.getElementById("formErr").classList.remove("show");
+  showStep(1);
+  const c=document.getElementById("f_company"); c.focus(); c.scrollIntoView({behavior:"smooth",block:"center"});
+}
+document.getElementById("duplicateBtn").addEventListener("click",duplicateCurrentJob);
+
+/* ---------- share a single job with an advisor ---------- */
+function currentRecord(){
+  return {data:STATE.data, ratings:STATE.ratings, sources:STATE.sources, coachNotes:STATE.coachNotes, answers:STATE.answers, inputs:STATE.inputs, history:STATE.history, savedAt:Date.now()};
+}
+function shareCurrentJob(){
+  if(!STATE.data) return;
+  const bundle={ format:"eccles-playbook-backup", version:1, exportedAt:Date.now(), jobs:{ [STATE.key]: currentRecord() } };
+  const text=JSON.stringify(bundle,null,2);
+  const m=STATE.data.meta||{};
+  const fname="eccles-playbook-"+(slug(m.company)||"job")+"-"+(slug(m.role)||"role")+".json";
+  try{
+    const blob=new Blob([text],{type:"application/json"});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a"); a.href=url; a.download=fname;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(()=>URL.revokeObjectURL(url),1500);
+  }catch(e){}
+  document.getElementById("shareText").value=text;
+  document.getElementById("sharePanel").style.display="block";
+  document.getElementById("sharePanel").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+document.getElementById("shareBtn").addEventListener("click",shareCurrentJob);
+document.getElementById("copyShareBtn").addEventListener("click", async ()=>{
+  const ok=await copyText(document.getElementById("shareText").value);
+  const st=document.getElementById("shareCopyStatus");
+  st.textContent=ok?"Copied — save it as a .json file to send.":"Select the text and copy it manually.";
+  st.className="copy-status "+(ok?"ok":"err");
+});
+
+/* ---------- first-run walkthrough ---------- */
+const TOUR_STEPS = [
+  {t:"Welcome to your interview playbook", b:"Turn any job posting into a tailored set of likely interview questions — with model answers, rubrics, and AI coaching — then practice and track your readiness. Here's the 30-second tour."},
+  {t:"1 · Describe the job", b:"Paste what you know about the role. The more specific you are, the sharper your questions. We turn it into a ready-made prompt you run in any AI (Claude, ChatGPT, your school's tool) — no coding."},
+  {t:"2 · Rehearse & Refine", b:"Paste the AI's playbook here, then practice: type or speak each answer, rate yourself against the rubric, and get AI coaching on what to fix. Save the job to keep your progress."},
+  {t:"3 · Saved jobs", b:"Every saved job lives here with its readiness and last-practiced date. Back up your work, move it between devices, or hand a job to an advisor — all from this tab."}
+];
+let _tourI=0;
+function renderTour(){
+  const s=TOUR_STEPS[_tourI];
+  document.getElementById("tourStepLabel").textContent="Step "+(_tourI+1)+" of "+TOUR_STEPS.length;
+  document.getElementById("tourTitle").textContent=s.t;
+  document.getElementById("tourBody").textContent=s.b;
+  document.getElementById("tourDots").innerHTML=TOUR_STEPS.map((_,i)=>`<span class="${i===_tourI?"on":""}"></span>`).join("");
+  document.getElementById("tourBack").style.visibility = _tourI===0 ? "hidden" : "visible";
+  document.getElementById("tourNext").textContent = _tourI===TOUR_STEPS.length-1 ? "Get started" : "Next";
+}
+function openTour(){ _tourI=0; renderTour(); document.getElementById("tourOverlay").classList.add("show"); }
+function closeTour(){
+  document.getElementById("tourOverlay").classList.remove("show");
+  try{ localStorage.setItem(CONFIG.storagePrefix+"__toured","1"); }catch(e){}
+}
+document.getElementById("tourBtn").addEventListener("click",openTour);
+document.getElementById("tourSkip").addEventListener("click",closeTour);
+document.getElementById("tourBack").addEventListener("click",()=>{ if(_tourI>0){ _tourI--; renderTour(); } });
+document.getElementById("tourNext").addEventListener("click",()=>{
+  if(_tourI < TOUR_STEPS.length-1){ _tourI++; renderTour(); }
+  else { closeTour(); showStep(1); }
+});
+document.getElementById("tourOverlay").addEventListener("click",(e)=>{ if(e.target.id==="tourOverlay") closeTour(); });
+function maybeShowTour(){
+  let toured=false;
+  try{ toured = localStorage.getItem(CONFIG.storagePrefix+"__toured")==="1"; }catch(e){}
+  if(!toured) openTour();
+}
+
+/* ---------- saved search ---------- */
+document.getElementById("savedSearch").addEventListener("input",renderSavedList);
+
+/* ---------- onboarding nudge ---------- */
+function maybeShowNudge(){
+  if(!CAN_STORE){ return; }
+  let dismissed=false;
+  try{ dismissed = localStorage.getItem(CONFIG.storagePrefix+"__onboarded")==="1"; }catch(e){}
+  const noJobs = Object.keys(savedIndex()).length===0;
+  document.getElementById("onboardNudge").classList.toggle("show", noJobs && !dismissed);
+}
+function dismissNudge(){
+  try{ localStorage.setItem(CONFIG.storagePrefix+"__onboarded","1"); }catch(e){}
+  document.getElementById("onboardNudge").classList.remove("show");
+}
+document.getElementById("nudgeSampleBtn").addEventListener("click",()=>{
+  dismissNudge();
+  document.getElementById("jsonIn").value = JSON.stringify(SAMPLE,null,2);
+  activate(SAMPLE, {}, SAMPLE_INPUTS);
+});
+document.getElementById("nudgeDismissBtn").addEventListener("click",dismissNudge);
+
+/* ---------- recovery draft banner ---------- */
+function maybeShowRecovery(){
+  const draft=getDraft();
+  if(!draft || !draft.data || isInIndex(draft.key)){ clearDraft(); document.getElementById("recoveryBar").classList.remove("show"); return; }
+  const m=draft.data.meta||{};
+  document.getElementById("recoveryLabel").textContent = (m.company||"a job")+" — "+(m.role||"");
+  document.getElementById("recoveryBar").classList.add("show");
+}
+document.getElementById("recoveryResumeBtn").addEventListener("click",()=>{
+  const draft=getDraft();
+  document.getElementById("recoveryBar").classList.remove("show");
+  if(draft && draft.data){
+    activate(draft.data, draft);   // restores ratings/answers/inputs; stays unsaved
+    STATE.dirty=true; updateSaveBar();
+  }
+});
+document.getElementById("recoveryDiscardBtn").addEventListener("click",()=>{
+  clearDraft();
+  document.getElementById("recoveryBar").classList.remove("show");
+});
+
+/* ---------- Tab 3: export / import backups ---------- */
+function setIO(msg,type){ const el=document.getElementById("ioMsg"); el.textContent=msg; el.className="feedback "+type+" show"; }
+
+function bundleAll(){
+  const idx=savedIndex();
+  const bundle={ format:"eccles-playbook-backup", version:1, exportedAt:Date.now(), jobs:{} };
+  Object.keys(idx).forEach(k=>{ const rec=loadSaved(k); if(rec) bundle.jobs[k]=rec; });
+  return bundle;
+}
+document.getElementById("exportBtn").addEventListener("click",()=>{
+  if(!CAN_STORE || Object.keys(savedIndex()).length===0){ setIO("No saved jobs to back up yet. Build and load one first.","warn"); return; }
+  const bundle=bundleAll();
+  const text=JSON.stringify(bundle,null,2);
+  const n=Object.keys(bundle.jobs).length;
+  let downloaded=false;
+  try{
+    const blob=new Blob([text],{type:"application/json"});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement("a");
+    a.href=url; a.download="eccles-playbooks-"+new Date().toISOString().slice(0,10)+".json";
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(()=>URL.revokeObjectURL(url),1500);
+    downloaded=true;
+  }catch(e){ downloaded=false; }
+  document.getElementById("exportText").value=text;
+  document.getElementById("exportPanel").style.display="block";
+  setIO((downloaded?"Backup download started — ":"")+n+" job"+(n===1?"":"s")+" packaged. If no file appeared, copy the text below and save it as a .json file.","ok");
+});
+document.getElementById("copyExportBtn").addEventListener("click", async ()=>{
+  const ok=await copyText(document.getElementById("exportText").value);
+  const st=document.getElementById("exportCopyStatus");
+  st.textContent=ok?"Copied — save it as a .json file.":"Select the text and copy it manually.";
+  st.className="copy-status "+(ok?"ok":"err");
+});
+
+document.getElementById("importBtn").addEventListener("click",()=>{
+  const p=document.getElementById("importPanel");
+  p.style.display = p.style.display==="block" ? "none" : "block";
+});
+document.getElementById("chooseFileBtn").addEventListener("click",()=>document.getElementById("importFile").click());
+document.getElementById("importFile").addEventListener("change",(e)=>{
+  const file=e.target.files&&e.target.files[0];
+  if(!file) return;
+  const reader=new FileReader();
+  reader.onload=()=>doImport(String(reader.result));
+  reader.onerror=()=>setIO("Couldn't read that file. Try the paste box instead.","error");
+  reader.readAsText(file);
+  e.target.value=""; // allow re-importing the same file
+});
+document.getElementById("importTextBtn").addEventListener("click",()=>doImport(document.getElementById("importText").value));
+
+function doImport(text){
+  if(!CAN_STORE){ setIO("This browser is blocking local storage, so imported jobs can't be saved here.","error"); return; }
+  if(!text || !text.trim()){ setIO("Nothing to import — choose a file or paste backup text first.","warn"); return; }
+  let bundle;
+  try{ bundle=JSON.parse(text); }catch(e){ setIO("That isn't valid JSON. Make sure it's an unedited backup file.","error"); return; }
+  if(!bundle || bundle.format!=="eccles-playbook-backup" || typeof bundle.jobs!=="object" || !bundle.jobs){
+    setIO("That doesn't look like an Eccles playbook backup. Use a file made by the Download backup button.","error"); return;
+  }
+  let added=0, updated=0, unchanged=0, skipped=0;
+  let idx=savedIndex();
+  Object.entries(bundle.jobs).forEach(([k,rec])=>{
+    if(typeof k!=="string" || !k.startsWith(CONFIG.storagePrefix)){ skipped++; return; }
+    if(!rec || !rec.data || !Array.isArray(rec.data.questions)){ skipped++; return; }
+    try{
+      const existing=loadSaved(k);
+      if(existing){
+        if((rec.savedAt||0) > (existing.savedAt||0)){ localStorage.setItem(k, JSON.stringify(rec)); updated++; }
+        else unchanged++;
+      } else { localStorage.setItem(k, JSON.stringify(rec)); added++; }
+      const m=rec.data.meta||{};
+      idx[k]=(m.company||"Company")+" — "+(m.role||"Role")+(m.level?" ("+m.level+")":"");
+    }catch(e){ skipped++; }
+  });
+  try{ localStorage.setItem(CONFIG.storagePrefix+"__index", JSON.stringify(idx)); }catch(e){}
+  renderSavedList();
+  const parts=[added+" new", updated+" updated", unchanged+" unchanged"];
+  if(skipped) parts.push(skipped+" skipped");
+  setIO("Import complete — "+parts.join(", ")+".","ok");
+}
+
+/* ---------- fresh start: blank Tab 1; saved jobs open from Tab 3 ---------- */
+window.addEventListener("DOMContentLoaded",()=>{
+  renderSavedList();
+  maybeShowNudge();
+  maybeShowRecovery();
+  showStep(1);
+  maybeShowTour();
+});
+
+/* ============================================================
+   SAMPLE — small valid playbook so first run renders something
+   ============================================================ */
+const SAMPLE = {
+  meta:{ company:"Northwind Robotics", role:"Senior Product Marketing Manager", level:"Senior",
+    generatedDate:"2026-06-01", inputCompleteness:"medium",
+    archetype:{ stages:["recruiter_screen","hiring_manager","panel","final"],
+      typeMix:{behavioral:35,role_specific:30,case:20,values:15} } },
+  competencies:[
+    {id:"comp_01",name:"Positioning & messaging",weight:30,source:"job_posting"},
+    {id:"comp_02",name:"Cross-functional GTM",weight:25,source:"job_posting"},
+    {id:"comp_03",name:"Customer & market insight",weight:25,source:"job_posting"},
+    {id:"comp_04",name:"Motivation & fit",weight:20,source:"core_floor"}
+  ],
+  questions:[
+    {id:"q_01",competencyId:"comp_04",stage:"recruiter_screen",type:"behavioral",confidence:"inferred",
+      question:"Walk me through your background and why this role.",
+      whyHere:"Standard opener; sets your narrative arc for the loop and signals whether you've researched Northwind.",
+      modelAnswer:"Use a 3-beat arc: where you started, the through-line that led to PMM, and why this specific role is the next logical step. Anchor the third beat to something concrete about the company (a product, a market shift) so it reads as targeted, not generic.",
+      rubric:{great:"Tight 90-second arc that lands on a specific, researched reason for THIS role.",solid:"Clear story but a generic 'why us'.",weak:"Chronological resume recital with no through-line."},
+      cruxLine:"The 'why this role' beat must be specific enough that it couldn't be copy-pasted to another company.",
+      trap:"Reciting the resume top-to-bottom instead of telling a shaped story."},
+    {id:"q_02",competencyId:"comp_01",stage:"hiring_manager",type:"role_specific",confidence:"inferred",
+      question:"Take a product you know and reposition it for a segment it wasn't built for.",
+      whyHere:"Tests core PMM positioning muscle named in the job posting's first responsibility.",
+      modelAnswer:"Frame it: pick the segment, state their distinct job-to-be-done, then re-map the product's existing capabilities to that job and name what you'd drop from the old message. Close with how you'd validate the new angle cheaply before a full launch.",
+      rubric:{great:"Clear segment JTBD, a sharp before/after message, and a validation step.",solid:"Reasonable repositioning but no validation plan.",weak:"Feature list with no segment insight."},
+      cruxLine:"Lead with the segment's job-to-be-done, not the product's features.",
+      trap:"Repositioning by adjective ('more premium') instead of by customer job."},
+    {id:"q_03",competencyId:"comp_02",stage:"panel",type:"behavioral",confidence:"anchored",
+      question:"Tell me about a launch where sales and product disagreed. What did you do?",
+      whyHere:"You flagged this as a real question from a peer's Northwind loop; it probes cross-functional GTM under tension.",
+      modelAnswer:"STAR, but spend most of the time on Action: how you surfaced the disagreement, the data you used to break the tie, and how you kept both sides bought-in. End on a measurable Result and one thing you'd do earlier next time.",
+      rubric:{great:"Specific conflict, your mediating actions, a metric, and a reflection.",solid:"Good story but vague on your specific role.",weak:"Blames one side; no resolution mechanism."},
+      cruxLine:"Show the mechanism you used to resolve it, not just that it got resolved.",
+      trap:"Making yourself the hero and the other team the obstacle."},
+    {id:"q_04",competencyId:"comp_03",stage:"panel",type:"case",confidence:"inferred",
+      question:"Our win rate dropped last quarter in mid-market. How would you diagnose why?",
+      whyHere:"Mirrors the analytical 'customer & market insight' responsibility; mid-market is Northwind's stated growth segment.",
+      modelAnswer:"Structure the diagnosis: segment the drop (which products, which competitors, which stage of funnel), form two or three hypotheses, then say what data or customer conversations would confirm each. Resist jumping to a fix before the cause is clear.",
+      rubric:{great:"Structured funnel/segment breakdown, testable hypotheses, evidence plan.",solid:"Some structure but jumps to solutions early.",weak:"Unstructured guessing at causes."},
+      cruxLine:"Diagnose before you prescribe — name the data that would confirm the cause.",
+      trap:"Leaping to 'we need better messaging' before isolating where the loss happens."},
+    {id:"q_05",competencyId:"comp_04",stage:"final",type:"values",confidence:"inferred",
+      question:"What would you want to be true about your first 90 days here?",
+      whyHere:"Final-round fit check; reveals whether your priorities match how the team actually operates.",
+      modelAnswer:"Sketch a 30/60/90 in one breath: 30 days listening (customers, sales, the data), 60 days a first positioning hypothesis tested, 90 days one shipped improvement with a result. Tie it to something specific you'd want to learn about Northwind's customers.",
+      rubric:{great:"Concrete, sequenced plan that prioritizes learning before shipping.",solid:"Reasonable plan but generic.",weak:"Vague ambitions with no sequence."},
+      cruxLine:"Lead with learning and listening before you promise output.",
+      trap:"Promising big shipped wins in month one before you understand the customer."}
+  ]
+};
+const SAMPLE_INPUTS = {
+  company:"Northwind Robotics", role:"Senior Product Marketing Manager", level:"Senior",
+  stage:"Hiring manager",
+  summary:"Own positioning and go-to-market for Northwind's robotics platform, partnering with product and sales to drive adoption in new segments.",
+  resp:"Define positioning and messaging. Lead cross-functional launches. Turn customer and market insight into GTM strategy. Partner with sales on enablement.",
+  skills:"6+ years in product marketing. Strong positioning and storytelling. Comfort with data and win/loss analysis. Cross-functional leadership.",
+  other:"This is a sample playbook included to show how the tool works. Replace it by building your own job in step 1.",
+  full:""
+};
+</script>
+</body>
+</html>
