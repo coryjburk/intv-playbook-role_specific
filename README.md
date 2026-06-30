@@ -4,9 +4,6 @@
 
 It's free, runs entirely in your web browser, and uses whatever AI assistant you already have access to. Nothing you enter is uploaded anywhere.
 
-> [!NOTE]
-> **Live tool:** _add your deployed link here_ (e.g., `https://coryjburk.github.io/...`).
-
 ---
 
 ## Table of contents
