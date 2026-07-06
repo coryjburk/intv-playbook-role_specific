@@ -8,7 +8,7 @@ It's free, runs entirely in your web browser, and uses whatever AI assistant you
 
 ## Live Link
 
-[https://coryjburk.github.io/intv-playbook-role_specific/]
+[Intv Playbook – Role Specific (vC)](https://coryjburk.github.io/intv-playbook-role_specific/)
 
 ---
 
