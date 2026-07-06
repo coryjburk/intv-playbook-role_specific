@@ -1,8 +1,14 @@
-# Tailored Interview Playbook
+# Full-Time MBA Program · David Eccles School of Business · Tailored Interview Playbook
 
 **Turn any job posting into a personalized interview-prep playbook** — likely questions, model answers, scoring rubrics, and AI coaching — then practice your answers, rate yourself, and track your readiness over time.
 
 It's free, runs entirely in your web browser, and uses whatever AI assistant you already have access to. Nothing you enter is uploaded anywhere.
+
+---
+
+## Live Link
+
+[https://coryjburk.github.io/intv-playbook-role_specific/]
 
 ---
 
