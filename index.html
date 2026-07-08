@@ -798,8 +798,8 @@ function composite(){
 /* ============================================================
    RENDER
    ============================================================ */
-function esc(s){return (s==null?"":String(s)).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]))}
-
+function esc(s){return (s==null?"":String(s)).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+   
 function renderDashboard(){
   const d=STATE.data, m=d.meta||{};
   document.getElementById("dJob").textContent = (m.company||"Untitled company");
