@@ -6,9 +6,7 @@ It's free, runs entirely in your web browser, and uses whatever AI assistant you
 
 ---
 
-## Live Link
-
-[Intv Playbook – Role Specific (vC)](https://coryjburk.github.io/intv-playbook-role_specific/)
+## **▶ Live tool:** **[Intv Playbook – Role Specific (vC)](https://coryjburk.github.io/intv-playbook-role_specific/)**
 
 ---
 
@@ -152,4 +150,5 @@ Everything runs in your browser. Your inputs, answers, and ratings are never upl
 
 ---
 
-<sub>Built for the David Eccles School of Business · MBA Career Services.</sub>
+Developed by Cory Burk, Senior Manager, Program Management · Full-Time MBA Program · David Eccles School of Business.
+© 2026 University of Utah, David Eccles School of Business. All rights reserved.
